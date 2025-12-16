@@ -1,0 +1,14 @@
+# Netlify configuration for building and SPA routing
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Optionally set environment variables here for local testing
+# Do NOT commit sensitive values. Prefer setting them in Netlify UI.
+# [build.environment]
+#   VITE_API_URL = "https://evanebackend-3.onrender.com"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
