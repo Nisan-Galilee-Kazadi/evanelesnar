@@ -153,8 +153,8 @@ const EventsManager = () => {
 
   return (
     <AdminLayout>
-      <div className="p-8">
-        <div className="mb-8">
+      <div className="p-6">
+        <div className="mb-6">
           <h1 className="text-3xl font-bold text-white mb-2">
             Gestion des Événements
           </h1>
@@ -170,7 +170,7 @@ const EventsManager = () => {
                 resetForm();
                 setShowForm(true);
               }}
-              className="mb-8 flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="mb-6 flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
             >
               <FaPlus /> Ajouter un événement
             </button>
@@ -179,7 +179,7 @@ const EventsManager = () => {
               {events.map((event) => (
                 <div
                   key={event._id}
-                  className="bg-slate-900 p-6 rounded-xl border border-slate-800 flex justify-between items-center"
+                  className="bg-slate-900 p-4 rounded-xl border border-slate-800 flex justify-between items-center"
                 >
                   <div className="flex gap-4 items-center">
                     <img
@@ -230,7 +230,7 @@ const EventsManager = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-slate-900 p-8 rounded-xl border border-slate-800 max-w-4xl mx-auto"
+            className="bg-slate-900 p-6 rounded-xl border border-slate-800 max-w-4xl mx-auto"
           >
             <h2 className="text-2xl font-bold text-white mb-6">
               {editingEvent ? "Modifier l'événement" : "Nouvel événement"}

@@ -115,8 +115,8 @@ const Orders = () => {
 
   return (
     <AdminLayout>
-      <div className="p-8">
-        <div className="mb-8">
+      <div className="p-6">
+        <div className="mb-6">
           <h1 className="text-3xl font-bold text-white mb-2">
             Gestion des Ventes
           </h1>
@@ -125,17 +125,17 @@ const Orders = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">Total Commandes</div>
             <div className="text-3xl font-bold text-white">{orders.length}</div>
           </div>
-          <div className="bg-slate-900 border border-yellow-500/20 rounded-xl p-6">
+          <div className="bg-slate-900 border border-yellow-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">En Attente</div>
             <div className="text-3xl font-bold text-yellow-500">
               {pendingCount}
             </div>
           </div>
-          <div className="bg-slate-900 border border-green-500/20 rounded-xl p-6">
+          <div className="bg-slate-900 border border-green-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">Validées</div>
             <div className="text-3xl font-bold text-green-500">
               {validatedCount}
@@ -185,7 +185,7 @@ const Orders = () => {
         {/* Orders List */}
         <div className="space-y-4">
           {filteredOrders.length === 0 ? (
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-12 text-center">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 text-center">
               <div className="text-slate-400 text-lg">
                 Aucune commande trouvée
               </div>
@@ -198,7 +198,7 @@ const Orders = () => {
               >
                 {/* Order Header */}
                 <div
-                  className="p-6 cursor-pointer hover:bg-slate-800/50 transition-colors"
+                  className="p-4 cursor-pointer hover:bg-slate-800/50 transition-colors"
                   onClick={() =>
                     setExpandedOrder(
                       expandedOrder === order._id ? null : order._id

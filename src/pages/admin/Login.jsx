@@ -43,7 +43,7 @@ const Login = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-slate-900 p-8 rounded-xl border border-slate-800 w-full max-w-md"
+        className="bg-slate-900 p-6 rounded-xl border border-slate-800 w-full max-w-md"
       >
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Admin Login

@@ -111,9 +111,9 @@ const Dashboard = () => {
 
   return (
     <AdminLayout>
-      <div className="p-8">
+      <div className="p-6">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <h1 className="text-3xl font-bold text-white mb-2">
             Tableau de bord
           </h1>
@@ -121,7 +121,7 @@ const Dashboard = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {statCards.map((stat, index) => {
             const Icon = stat.icon;
             const colorClasses = {
@@ -139,7 +139,7 @@ const Dashboard = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link to={stat.link}>
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-all group cursor-pointer">
+                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-slate-700 transition-all group cursor-pointer">
                     <div className="flex items-start justify-between mb-4">
                       <div
                         className={`p-3 bg-gradient-to-br ${
@@ -169,8 +169,8 @@ const Dashboard = () => {
         {/* Quick Actions & Recent Orders */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Quick Actions */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <FaChartLine className="text-purple-500" />
               Actions rapides
             </h2>
@@ -205,8 +205,8 @@ const Dashboard = () => {
           </div>
 
           {/* Recent Orders */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <FaClock className="text-blue-500" />
               Commandes récentes
             </h2>
@@ -219,7 +219,7 @@ const Dashboard = () => {
                 {recentOrders.map((order) => (
                   <div
                     key={order._id}
-                    className="p-4 bg-slate-800/50 rounded-lg"
+                    className="p-3 bg-slate-800/50 rounded-lg"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="font-semibold text-white">
