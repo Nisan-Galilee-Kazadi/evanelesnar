@@ -14,21 +14,9 @@ const Footer = () => {
   const location = useLocation();
   const currentYear = new Date().getFullYear();
 
-  // Minimal footer on admin pages
+  // Ne rien afficher pour les pages d'administration
   if (location.pathname.startsWith("/admin")) {
-    return (
-      <footer
-        className="bg-slate-950 border-t border-slate-800 py-6"
-        style={{ paddingLeft: "var(--admin-sidebar-width)" }}
-      >
-        <div className="container-custom flex items-center justify-between text-slate-500 text-sm">
-          <p>© {currentYear} Evan Lesnar. Tous droits réservés.</p>
-          <Link to="/terms" className="hover:text-orange-500">
-            Conditions d'utilisation
-          </Link>
-        </div>
-      </footer>
-    );
+    return null;
   }
 
   const socialLinks = [

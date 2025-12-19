@@ -153,7 +153,7 @@ const EventsManager = () => {
 
   return (
     <AdminLayout>
-      <div className="p-6">
+      <div className="px-2">
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-white mb-2">
             Gestion des Événements
@@ -175,52 +175,75 @@ const EventsManager = () => {
               <FaPlus /> Ajouter un événement
             </button>
 
-            <div className="grid gap-4">
+            <div className="space-y-4 px-2 sm:px-0">
               {events.map((event) => (
                 <div
                   key={event._id}
-                  className="bg-slate-900 p-4 rounded-xl border border-slate-800 flex justify-between items-center"
+                  className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden"
                 >
-                  <div className="flex gap-4 items-center">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-16 h-16 object-cover rounded-lg"
-                    />
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">
-                        {event.title}
-                      </h3>
-                      <p className="text-slate-400 text-sm">
-                        {new Date(event.date).toLocaleDateString("fr-FR")} à{" "}
-                        {event.time} • {event.venue}, {event.city}
-                      </p>
-                      <span
-                        className={`inline-block mt-2 px-3 py-1 rounded-full text-xs font-semibold ${
-                          event.status === "upcoming"
-                            ? "bg-green-500/10 text-green-500"
-                            : event.status === "soldout"
-                            ? "bg-red-500/10 text-red-500"
-                            : "bg-slate-700 text-slate-300"
-                        }`}
-                      >
-                        {event.status.toUpperCase()}
-                      </span>
+                  <div className="flex flex-col sm:flex-row">
+                    {/* Image à gauche */}
+                    <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleEdit(event)}
-                      className="p-2 text-blue-400 hover:bg-blue-400/10 rounded transition-colors"
-                    >
-                      <FaEdit size={20} />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(event._id)}
-                      className="p-2 text-red-400 hover:bg-red-400/10 rounded transition-colors"
-                    >
-                      <FaTrash size={20} />
-                    </button>
+
+                    {/* Contenu à droite */}
+                    <div className="flex-1 p-4 flex flex-col">
+                      <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                          <h3 className="text-xl font-bold text-white">{event.title}</h3>
+                          <span
+                            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                              event.status === "upcoming"
+                                ? "bg-green-500/10 text-green-500"
+                                : event.status === "soldout"
+                                ? "bg-red-500/10 text-red-500"
+                                : "bg-slate-700 text-slate-300"
+                            }`}
+                          >
+                            {event.status.toUpperCase()}
+                          </span>
+                        </div>
+
+                        <div className="text-slate-400 text-sm space-y-1 mb-4">
+                          <p>
+                            {new Date(event.date).toLocaleDateString("fr-FR", {
+                              weekday: "long",
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
+                            {" • "}
+                            {event.time}
+                          </p>
+                          <p>
+                            {event.venue}, {event.city}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Boutons d'action en bas */}
+                      <div className="flex justify-end space-x-3 pt-3 border-t border-slate-800">
+                        <button
+                          onClick={() => handleEdit(event)}
+                          className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
+                        >
+                          <FaEdit className="text-white" /> 
+                          <span>Modifier</span>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(event._id)}
+                          className="px-4 py-2 bg-purple-600 hover:bg-red-600 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
+                        >
+                          <FaTrash className="text-white" />
+                          <span>Supprimer</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
