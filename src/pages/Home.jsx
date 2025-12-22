@@ -400,11 +400,11 @@ const Home = () => {
                   <FaChevronRight />
                 </button>
 
-                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="zoom-in">
+                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-1" data-aos="zoom-in">
                   {visibleEvents.map((event, index) => (
                     <div
                       key={event._id}
-                      className="event-card animate-slide-up"
+                      className="event-card animate-slide-up border-2 border-red-800/50 rounded-lg overflow-hidden hover:border-red-600 transition-colors duration-300 m-1"
                       style={{ animationDelay: `${index * 0.1}s` }}
                       data-aos="fade-up"
                       data-aos-delay={`${index * 100}`}
@@ -424,7 +424,7 @@ const Home = () => {
                         )}
                       </div>
 
-                      <div className="p-6">
+                      <div className="p-4">
                         <h3 className="text-2xl font-bold mb-3 text-white">
                           {event.title}
                         </h3>
@@ -491,7 +491,7 @@ const Home = () => {
 
                 <div className="md:hidden">
                   {getVisibleEvents(1).map((event) => (
-                    <div key={event._id} className="event-card animate-slide-up">
+                    <div key={event._id} className="event-card animate-slide-up border-2 border-red-800/50 rounded-lg overflow-hidden hover:border-red-600 transition-colors duration-300 mx-2">
                       <div className="relative h-64 overflow-hidden">
                         <img
                           src={event.image}
@@ -507,7 +507,7 @@ const Home = () => {
                         )}
                       </div>
 
-                      <div className="p-6">
+                      <div className="p-4">
                         <h3 className="text-2xl font-bold mb-3 text-white">
                           {event.title}
                         </h3>

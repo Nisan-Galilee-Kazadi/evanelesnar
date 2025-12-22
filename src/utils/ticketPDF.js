@@ -21,9 +21,8 @@ export const generateTicketPDF = async (order, event) => {
 
     ticketContainer.innerHTML = `
         <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: 20px; overflow: hidden; border: 2px solid #334155;">
-            <!-- Header with Event Image -->
-            <div style="position: relative; height: 250px; overflow: hidden;">
-                <img src="${event.image}" style="width: 100%; height: 100%; object-fit: cover;" crossorigin="anonymous" />
+            <!-- Header with Gradient Background -->
+            <div style="position: relative; height: 250px; overflow: hidden; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent); padding: 30px;">
                     <h1 style="color: #fff; font-size: 32px; margin: 0; font-weight: bold;">${event.title}</h1>
                 </div>
