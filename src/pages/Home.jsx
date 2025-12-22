@@ -14,6 +14,7 @@ import {
   FaTimes,
   FaChevronLeft,
   FaChevronRight,
+  FaVideo,
 } from "react-icons/fa";
 
 const Home = () => {
@@ -32,6 +33,7 @@ const Home = () => {
 
   const [homeMedia, setHomeMedia] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchEndX, setTouchEndX] = useState(null);
@@ -168,79 +170,98 @@ const Home = () => {
 
       {selectedMedia && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
           onClick={closeMediaDetails}
         >
           <div
-            className="relative w-full max-w-3xl bg-black border border-gray-800 rounded-2xl overflow-hidden"
+            className="relative w-full h-full flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button - Fixed top right */}
             <button
               onClick={closeMediaDetails}
-              className="absolute top-4 right-4 text-white hover:text-red-500 transition-colors"
+              className="fixed top-6 right-6 z-50 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white transition-all shadow-2xl"
             >
               <FaTimes className="text-2xl" />
             </button>
 
-            <div className="bg-black">
+            {/* Video/Image Container - Centered */}
+            <div className="relative max-w-6xl max-h-[85vh] w-full flex items-center justify-center">
               {selectedMedia.type === "image" ? (
                 <img
-                  src={selectedMedia.url}
+                  src={selectedMedia.url.replace("http://", "https://")}
                   alt={selectedMedia.title || "media"}
-                  className="w-full max-h-[420px] object-cover"
+                  className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                  crossOrigin="anonymous"
                 />
               ) : (
-                <div className="aspect-video">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={toYoutubeEmbed(selectedMedia.url) || selectedMedia.url}
-                    title={selectedMedia.title || "Media"}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+                <video
+                  src={selectedMedia.url.replace("http://", "https://")}
+                  controls
+                  autoPlay
+                  className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                  crossOrigin="anonymous"
+                  controlsList="nodownload"
+                >
+                  Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
               )}
             </div>
 
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {selectedMedia.title || (selectedMedia.type === "video" ? "Vidéo" : "Photo")}
-              </h3>
-              <p className="text-slate-400 mb-4 whitespace-pre-line">
-                {selectedMedia.description || ""}
-              </p>
+            {/* Details Toggle Button - Bottom Center */}
+            <button
+              onClick={() => setShowDetails(!showDetails)}
+              className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-6 py-3 rounded-full flex items-center gap-2 transition-all shadow-xl border border-white/20"
+            >
+              <FaFire className="text-red-500" />
+              <span>{showDetails ? "Masquer" : "Voir"} les détails</span>
+            </button>
 
-              {selectedMedia.sourceEvent && (
-                <div className="bg-black border border-gray-800 rounded-xl p-4">
-                  <div className="text-white font-semibold mb-2">Événement lié</div>
-                  <div className="text-slate-400 text-sm space-y-2">
-                    <div className="flex items-center gap-2">
-                      <FaCalendarAlt className="text-red-500" />
-                      <span>
-                        {new Date(selectedMedia.sourceEvent.date).toLocaleDateString("fr-FR", {
-                          weekday: "long",
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        })}
-                      </span>
+            {/* Details Panel - Slide from bottom */}
+            {showDetails && (
+              <div
+                className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/95 to-transparent p-6 pb-20 animate-slide-up"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="max-w-4xl mx-auto">
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {selectedMedia.title || (selectedMedia.type === "video" ? "Vidéo" : "Photo")}
+                  </h3>
+                  <p className="text-slate-300 mb-4 whitespace-pre-line">
+                    {selectedMedia.description || ""}
+                  </p>
+
+                  {selectedMedia.sourceEvent && (
+                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+                      <div className="text-white font-semibold mb-2">Événement lié</div>
+                      <div className="text-slate-300 text-sm space-y-2">
+                        <div className="flex items-center gap-2">
+                          <FaCalendarAlt className="text-red-500" />
+                          <span>
+                            {new Date(selectedMedia.sourceEvent.date).toLocaleDateString("fr-FR", {
+                              weekday: "long",
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <FaClock className="text-red-500" />
+                          <span>{selectedMedia.sourceEvent.time}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <FaMapMarkerAlt className="text-red-500" />
+                          <span>
+                            {selectedMedia.sourceEvent.venue}, {selectedMedia.sourceEvent.city}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <FaClock className="text-red-500" />
-                      <span>{selectedMedia.sourceEvent.time}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FaMapMarkerAlt className="text-red-500" />
-                      <span>
-                        {selectedMedia.sourceEvent.venue}, {selectedMedia.sourceEvent.city}
-                      </span>
-                    </div>
-                  </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -272,7 +293,7 @@ const Home = () => {
               <p className="mt-8 text-[16px] md:text-2xl text-slate-200 italic min-h-[3.5rem]" data-aos="fade-up" data-aos-delay="300">
                 {slogans[sloganIndex]}
               </p>
-{/* 
+              {/* 
               <p className="mt-6 text-slate-300 max-w-2xl md:max-w-none">
                 Préparez-vous à rire aux éclats !
               </p> */}
@@ -583,23 +604,35 @@ const Home = () => {
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
-                <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
-                  <img
-                    src={m.type === "video" ? m.thumbnail : m.url}
-                    alt={m.title || "media"}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {m.type === "video" && (
-                    <div
-                      className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/60 transition-all cursor-pointer"
-                      onClick={() => openVideo(toYoutubeEmbed(m.url)?.split("/").pop() || m.url)}
-                    >
-                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
-                        <span className="text-3xl text-white pl-1">
-                          <FaPlay />
-                        </span>
+                <div className="relative aspect-video rounded-lg overflow-hidden mb-4 bg-black">
+                  {m.type === "video" ? (
+                    <div className="relative w-full h-full group/video">
+                      <video
+                        src={m.url.replace("http://", "https://")}
+                        className="w-full h-full object-cover"
+                        preload="metadata"
+                        crossOrigin="anonymous"
+                      />
+                      <div
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center cursor-pointer group-hover/video:bg-black/60 transition-all"
+                        onClick={() => setSelectedMedia(m)}
+                      >
+                        <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center transform group-hover/video:scale-110 transition-transform shadow-2xl">
+                          <FaPlay className="text-3xl text-white ml-1" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-3 left-3 bg-black/70 px-3 py-1 rounded-full text-white text-sm flex items-center gap-2">
+                        <FaVideo className="text-red-500" />
+                        <span>Vidéo</span>
                       </div>
                     </div>
+                  ) : (
+                    <img
+                      src={m.url.replace("http://", "https://")}
+                      alt={m.title || "media"}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      crossOrigin="anonymous"
+                    />
                   )}
                 </div>
 

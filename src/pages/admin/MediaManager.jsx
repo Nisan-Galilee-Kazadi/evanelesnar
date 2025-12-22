@@ -148,9 +148,9 @@ const MediaManager = () => {
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
 
-    // Next step logic
+    // Next step logic - Skip trim for videos (FFmpeg issues)
     if (uploadType === "video") {
-      setModalStep(3); // Go to Trim
+      setModalStep(4); // Skip trim, go directly to Metadata
     } else {
       setModalStep(4); // Go to Metadata
     }
