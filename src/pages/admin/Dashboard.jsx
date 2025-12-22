@@ -139,7 +139,7 @@ const Dashboard = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link to={stat.link}>
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-slate-700 transition-all group cursor-pointer">
+                  <div className="bg-black border border-slate-800 rounded-xl p-4 hover:border-slate-700 transition-all group cursor-pointer">
                     <div className="flex items-start justify-between mb-4">
                       <div
                         className={`p-3 bg-gradient-to-br ${
@@ -169,7 +169,7 @@ const Dashboard = () => {
         {/* Quick Actions & Recent Orders */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Quick Actions */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+          <div className="bg-black border border-slate-800 rounded-xl p-4">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <FaChartLine className="text-red-500" />
               Actions rapides
@@ -205,7 +205,7 @@ const Dashboard = () => {
           </div>
 
           {/* Recent Orders */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+          <div className="bg-black border border-slate-800 rounded-xl p-4">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <FaClock className="text-blue-500" />
               Commandes récentes

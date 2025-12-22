@@ -172,7 +172,7 @@ const Home = () => {
           onClick={closeMediaDetails}
         >
           <div
-            className="relative w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden"
+            className="relative w-full max-w-3xl bg-black border border-gray-800 rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -182,7 +182,7 @@ const Home = () => {
               <FaTimes className="text-2xl" />
             </button>
 
-            <div className="bg-slate-950">
+            <div className="bg-black">
               {selectedMedia.type === "image" ? (
                 <img
                   src={selectedMedia.url}
@@ -213,7 +213,7 @@ const Home = () => {
               </p>
 
               {selectedMedia.sourceEvent && (
-                <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <div className="bg-black border border-gray-800 rounded-xl p-4">
                   <div className="text-white font-semibold mb-2">Événement lié</div>
                   <div className="text-slate-400 text-sm space-y-2">
                     <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ const Home = () => {
         <div className="relative z-10 container-custom pt-64 md:pt-28 pb-16 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="hidden md:block">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-black">
+              <div className="relative rounded-3xl overflow-hidden bg-black">
                 <img src={heroImage} alt="Hero" className="w-full h-[640px] object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-transparent to-black/20" />
                 <div className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-red-600/25 blur-3xl" />
@@ -269,13 +269,13 @@ const Home = () => {
                 <span className="text-red-500">Lesnar</span>
               </h1>
 
-              <p className="mt-8 text-xl md:text-2xl text-slate-200 italic min-h-[3.5rem]">
+              <p className="mt-8 text-[16px] md:text-2xl text-slate-200 italic min-h-[3.5rem]">
                 {slogans[sloganIndex]}
               </p>
-
+{/* 
               <p className="mt-6 text-slate-300 max-w-2xl md:max-w-none">
                 Préparez-vous à rire aux éclats !
-              </p>
+              </p> */}
 
               <div className="mt-12 flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4">
                 <Link
@@ -294,19 +294,19 @@ const Home = () => {
               </div>
 
               <div className="hidden md:grid mt-12 grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 text-center">
+                <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">2022</div>
                   <div className="text-slate-400 text-sm">Début</div>
                 </div>
-                <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 text-center">
+                <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">~4 ans</div>
                   <div className="text-slate-400 text-sm">Expérience</div>
                 </div>
-                <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 text-center">
+                <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">2024</div>
                   <div className="text-slate-400 text-sm">Prix Prexelart</div>
                 </div>
-                <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 text-center">
+                <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">Rodage</div>
                   <div className="text-slate-400 text-sm">1er spectacle</div>
                 </div>
@@ -316,32 +316,39 @@ const Home = () => {
         </div>
       </section>
 
-      {/* MOBILE STATS */}
-      <section className="md:hidden bg-slate-950 border-b border-slate-900 py-8">
+      {/* STATS SECTION - MOBILE ONLY */}
+      <section className="md:hidden bg-black py-8 border-t border-b border-gray-800">
         <div className="container-custom">
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 text-center">
+            {/* Stat 1 */}
+            <div className="bg-black border border-gray-800 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-white">2022</div>
-              <div className="text-slate-400 text-xs mt-1">Début</div>
+              <div className="text-xs text-gray-400 mt-1">Début</div>
             </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 text-center">
-              <div className="text-2xl font-bold text-white">~4 ans</div>
-              <div className="text-slate-400 text-xs mt-1">Expérience</div>
+
+            {/* Stat 2 */}
+            <div className="bg-black border border-gray-800 rounded-lg p-4 text-center">
+              <div className="text-2xl font-bold text-white">+3 ans</div>
+              <div className="text-xs text-gray-400 mt-1">Expérience</div>
             </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 text-center">
+
+            {/* Stat 3 */}
+            <div className="bg-black border border-gray-800 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-white">2024</div>
-              <div className="text-slate-400 text-xs mt-1">Prix Prexelart</div>
+              <div className="text-xs text-gray-400 mt-1">Prix Prexelart</div>
             </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 text-center">
+
+            {/* Stat 4 */}
+            <div className="bg-black border border-gray-800 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-white">Rodage</div>
-              <div className="text-slate-400 text-xs mt-1">1er spectacle</div>
+              <div className="text-xs text-gray-400 mt-1">1er spectacle</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* UPCOMING EVENTS */}
-      <section className="section bg-slate-950">
+      <section className="section bg-black">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="section-title">Prochains Spectacles</h2>
@@ -601,7 +608,7 @@ const Home = () => {
                     {m.description || ""}
                   </p>
                   <button
-                    className="text-sm px-4 py-2 bg-slate-950 border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
+                    className="text-sm px-4 py-2 bg-black border border-gray-800 text-white rounded-lg hover:border-red-500 transition-colors"
                     onClick={() => setSelectedMedia(m)}
                   >
                     Voir détails

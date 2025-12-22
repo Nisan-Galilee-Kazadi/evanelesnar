@@ -48,6 +48,7 @@ const MediaManager = () => {
   // --- STATE: VIDEO TRIMMING ---
   const [ffmpeg, setFfmpeg] = useState(null);
   const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
+  const [ffmpegError, setFfmpegError] = useState(null);
   const [trimStart, setTrimStart] = useState(0);
   const [trimEnd, setTrimEnd] = useState(10);
   const [videoDuration, setVideoDuration] = useState(0);
@@ -66,7 +67,8 @@ const MediaManager = () => {
   const loadFFmpeg = async () => {
     try {
       const ffmpegInstance = new FFmpeg();
-      const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd";
+      // Switch to jsdelivr which is often more stable for WASM hosting
+      const baseURL = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
       await ffmpegInstance.load({
         coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
         wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
@@ -75,6 +77,9 @@ const MediaManager = () => {
       setFfmpegLoaded(true);
     } catch (err) {
       console.error("FFmpeg load failed:", err);
+      // Handle cases where err might not be an Error object
+      const msg = err instanceof Error ? err.message : String(err);
+      setFfmpegError(msg);
     }
   };
 
@@ -166,7 +171,7 @@ const MediaManager = () => {
       Swal.fire({
         icon: 'error',
         title: 'FFmpeg non prêt',
-        text: 'Le moteur de traitement vidéo ne s\'est pas chargé correctement. Veuillez rafraîchir la page ou vérifier votre connexion.',
+        text: `Le moteur vidéo ne s'est pas chargé. Erreur: ${ffmpegError || 'Inconnue'}. Rafraîchissez la page.`,
         confirmButtonColor: '#dc2626'
       });
       return;
@@ -364,7 +369,7 @@ const MediaManager = () => {
               <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
             </div>
           ) : filteredItems.length === 0 ? (
-            <div className="text-center py-20 text-slate-500 bg-slate-900/50 rounded-xl border border-dashed border-slate-800">
+            <div className="text-center py-20 text-slate-500 bg-black/50 rounded-xl border border-dashed border-slate-800">
               <FaPhotoVideo className="mx-auto text-4xl mb-4 opacity-30" />
               <p>Aucun média trouvé dans {activeTab === 'all' ? 'la bibliothèque' : 'cette section'}.</p>
             </div>
@@ -373,21 +378,23 @@ const MediaManager = () => {
               {filteredItems.map((item) => (
                 <div
                   key={item._id}
-                  className="group bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-red-500/50 transition-colors"
+                  className="group bg-black border border-slate-800 rounded-xl overflow-hidden hover:border-red-500/50 transition-colors"
                 >
                   {/* Thumbnail / Preview */}
                   <div className="aspect-video relative bg-black">
                     {item.type === "image" ? (
                       <img
-                        src={item.url}
+                        src={item.url.replace("http://", "https://")}
                         alt={item.title}
                         className="w-full h-full object-cover"
+                        crossOrigin="anonymous"
                       />
                     ) : (
                       <video
-                        src={item.url}
+                        src={item.url.replace("http://", "https://")}
                         className="w-full h-full object-cover"
                         controls
+                        crossOrigin="anonymous"
                       />
                     )}
                     <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -421,7 +428,7 @@ const MediaManager = () => {
       {/* --- ADD MEDIA MODAL --- */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="bg-black border border-slate-800 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 
             {/* Modal Header */}
             <div className="p-6 border-b border-slate-800 flex justify-between items-center">
@@ -496,6 +503,9 @@ const MediaManager = () => {
                         className="w-full h-full object-contain"
                         controls
                         onLoadedMetadata={onVideoLoadedMetadata}
+                      // Local preview doesn't need crossOrigin usually as it's blob, 
+                      // but if we ever use remote url here, it might.
+                      // For blob: no effect.
                       />
                     )}
                   </div>

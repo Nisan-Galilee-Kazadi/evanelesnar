@@ -103,7 +103,7 @@ const Contact = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                                         placeholder="Votre nom"
                                     />
                                 </div>
@@ -116,7 +116,7 @@ const Contact = () => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                                         placeholder="votre@email.com"
                                     />
                                 </div>
@@ -128,7 +128,7 @@ const Contact = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                                         placeholder="+243 000 000 000"
                                     />
                                 </div>
@@ -140,7 +140,7 @@ const Contact = () => {
                                         value={formData.subject}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-black border border-red-900/40 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
                                     >
                                         <option value="">Sélectionnez un sujet</option>
                                         <option value="booking">Demande de booking</option>
@@ -159,7 +159,7 @@ const Contact = () => {
                                         onChange={handleChange}
                                         required
                                         rows="5"
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
                                         placeholder="Votre message..."
                                     ></textarea>
                                 </div>
@@ -200,7 +200,7 @@ const Contact = () => {
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex items-center space-x-2 px-4 py-2 bg-slate-800 rounded-lg transition-all transform hover:scale-105 ${social.color}`}
+                                        className={`flex items-center space-x-2 px-4 py-2 bg-red-900 rounded-lg transition-all transform hover:scale-105 ${social.color}`}
                                     >
                                         <span className="text-2xl text-white">{social.icon}</span>
                                         <span className="text-white font-medium">{social.name}</span>

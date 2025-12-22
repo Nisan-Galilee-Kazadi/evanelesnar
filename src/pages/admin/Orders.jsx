@@ -146,17 +146,17 @@ const Orders = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+          <div className="bg-black border border-slate-800 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">Total Commandes</div>
             <div className="text-3xl font-bold text-white">{orders.length}</div>
           </div>
-          <div className="bg-slate-900 border border-yellow-500/20 rounded-xl p-4">
+          <div className="bg-black border border-yellow-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">En Attente</div>
             <div className="text-3xl font-bold text-yellow-500">
               {pendingCount}
             </div>
           </div>
-          <div className="bg-slate-900 border border-green-500/20 rounded-xl p-4">
+          <div className="bg-black border border-green-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">Validées</div>
             <div className="text-3xl font-bold text-green-500">
               {validatedCount}
@@ -173,7 +173,7 @@ const Orders = () => {
               placeholder="Rechercher par nom, email, téléphone ou ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-red-500 outline-none"
+              className="w-full bg-black border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-red-500 outline-none"
             />
           </div>
 
@@ -181,7 +181,7 @@ const Orders = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-slate-900 border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-red-500 outline-none"
+              className="bg-black border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-red-500 outline-none"
             >
               <option value="all">Tous les statuts</option>
               <option value="pending">En attente</option>
@@ -191,7 +191,7 @@ const Orders = () => {
             <select
               value={eventFilter}
               onChange={(e) => setEventFilter(e.target.value)}
-              className="bg-slate-900 border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-red-500 outline-none"
+              className="bg-black border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-red-500 outline-none"
             >
               <option value="all">Tous les événements</option>
               {events.map((event) => (
@@ -206,7 +206,7 @@ const Orders = () => {
         {/* Orders List */}
         <div className="space-y-4">
           {filteredOrders.length === 0 ? (
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 text-center">
+            <div className="bg-black border border-slate-800 rounded-xl p-8 text-center">
               <div className="text-slate-400 text-lg">
                 Aucune commande trouvée
               </div>
@@ -215,7 +215,7 @@ const Orders = () => {
             filteredOrders.map((order) => (
               <div
                 key={order._id}
-                className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden"
+                className="bg-black border border-slate-800 rounded-xl overflow-hidden"
               >
                 {/* Order Header */}
                 <div
@@ -284,7 +284,7 @@ const Orders = () => {
 
                 {/* Order Details (Expanded) */}
                 {expandedOrder === order._id && (
-                  <div className="border-t border-slate-800 p-6 bg-slate-950">
+                  <div className="border-t border-slate-800 p-6 bg-black">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Customer Info */}
                       <div>
@@ -366,7 +366,7 @@ const Orders = () => {
                         <h3 className="text-white font-semibold mb-4">
                           Billets
                         </h3>
-                        <div className="bg-slate-900 rounded-lg p-4">
+                        <div className="bg-black rounded-lg p-4">
                           {order.tickets.map((ticket, idx) => (
                             <div
                               key={idx}

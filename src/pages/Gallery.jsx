@@ -60,7 +60,7 @@ const Gallery = () => {
                             onClick={() => setFilter(cat.id)}
                             className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === cat.id
                                 ? 'bg-red-600 text-white'
-                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                                : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
                                 }`}
                         >
                             {cat.name}
@@ -104,7 +104,7 @@ const Gallery = () => {
                                     <h3 className="text-white font-bold text-lg mb-1">{item.title || (item.type === 'video' ? 'Vidéo' : 'Photo')}</h3>
                                     <p className="text-red-400 text-sm capitalize">{item.category}</p>
                                     <button
-                                      className="mt-3 w-full bg-slate-900/60 hover:bg-slate-900 text-white text-sm py-2 rounded-lg border border-slate-700"
+                                      className="mt-3 w-full bg-black/60 hover:bg-black text-white text-sm py-2 rounded-lg border border-gray-700"
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         setSelectedMedia(item);
@@ -125,14 +125,14 @@ const Gallery = () => {
                         onClick={() => setSelectedMedia(null)}
                     >
                         <button
-                            className="absolute top-6 right-6 w-12 h-12 bg-slate-800 hover:bg-red-600 rounded-full flex items-center justify-center text-2xl transition-colors"
+                            className="absolute top-6 right-6 w-12 h-12 bg-gray-800 hover:bg-red-600 rounded-full flex items-center justify-center text-2xl transition-colors"
                             onClick={() => setSelectedMedia(null)}
                         >
                             <span className="text-white"><FaTimes /></span>
                         </button>
                         <div className="w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-                            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-                              <div className="bg-slate-950">
+                            <div className="bg-black border border-gray-800 rounded-2xl overflow-hidden">
+                              <div className="bg-black">
                                 {selectedMedia.type === 'image' ? (
                                   <img
                                     src={selectedMedia.url}
@@ -169,7 +169,7 @@ const Gallery = () => {
                                 )}
 
                                 {selectedMedia.sourceEvent && (
-                                  <div className="mt-6 bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                  <div className="mt-6 bg-black border border-gray-800 rounded-xl p-4">
                                     <div className="text-white font-semibold mb-2">Événement lié</div>
                                     <div className="text-slate-400 text-sm space-y-2">
                                       <div className="flex items-center gap-2">

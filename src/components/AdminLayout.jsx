@@ -50,7 +50,7 @@ const AdminLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-black flex flex-col md:flex-row">
       {/* Overlay mobile */}
       {isOpen && (
         <div
@@ -62,7 +62,7 @@ const AdminLayout = ({ children }) => {
       {/* Sidebar */}
       <aside
         className={`fixed inset-y-0 left-0 z-40 h-screen ${isCollapsed ? "w-20" : "w-64"
-          } bg-slate-900 border-r border-slate-800 flex flex-col transform transition-all duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
+          } bg-black border-r border-slate-800 flex flex-col transform transition-all duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 md:fixed`}
       >
         {/* En-tête mobile */}
@@ -178,7 +178,7 @@ const AdminLayout = ({ children }) => {
       {/* Contenu principal */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden md:ml-64">
         {/* Barre de navigation supérieure */}
-        <header className="bg-slate-950 border-b border-slate-800 h-20 flex items-center justify-between px-4  static w-full md:px-8 z-10">
+        <header className="bg-black border-b border-slate-800 h-20 flex items-center justify-between px-4  static w-full md:px-8 z-10">
           {/* Bouton menu mobile */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -241,7 +241,7 @@ const AdminLayout = ({ children }) => {
         </header>
 
         {/* Contenu */}
-        <main className="flex-1 overflow-y-auto bg-slate-950 px-4 sm:px-6 py-6">
+        <main className="flex-1 overflow-y-auto bg-black px-4 sm:px-6 py-6">
           {children}
         </main>
 

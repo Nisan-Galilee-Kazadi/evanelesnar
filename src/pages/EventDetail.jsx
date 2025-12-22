@@ -435,7 +435,7 @@ const EventDetail = () => {
                     onChange={(e) =>
                       setTokenInput(e.target.value.toUpperCase())
                     }
-                    className="w-full px-6 py-4 bg-slate-900 border border-slate-700 rounded-lg text-white text-center text-xl font-mono placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                    className="w-full px-6 py-4 bg-black border border-slate-700 rounded-lg text-white text-center text-xl font-mono placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                   />
                 </div>
 
@@ -583,7 +583,7 @@ const EventDetail = () => {
                     onChange={(e) =>
                       setCustomerInfo({ ...customerInfo, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-4 py-3 bg-black border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
                   />
                   <input
                     type="email"
@@ -595,7 +595,7 @@ const EventDetail = () => {
                         email: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-4 py-3 bg-black border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
                   />
                   <input
                     type="tel"
@@ -607,7 +607,7 @@ const EventDetail = () => {
                         phone: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-4 py-3 bg-black border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
                   />
                 </div>
               </div>
@@ -704,7 +704,7 @@ const EventDetail = () => {
                 <p className="text-xl text-white mb-4">
                   Pour finaliser votre achat, veuillez effectuer le paiement :
                 </p>
-                <div className="text-3xl font-bold text-red-500 mb-4 p-4 bg-slate-900 rounded-lg border border-red-500/30">
+                <div className="text-3xl font-bold text-red-500 mb-4 p-4 bg-black rounded-lg border border-red-500/30">
                   {
                     paymentMethods.find((m) => m.id === selectedPayment)
                       ?.instructions

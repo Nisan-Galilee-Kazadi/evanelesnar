@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-black">
         <Navbar />
         <Routes>
           {/* Public Routes */}

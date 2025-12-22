@@ -68,7 +68,7 @@ const About = () => {
           onClick={closeParcoursDetails}
         >
           <div
-            className="relative w-full max-w-4xl bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden"
+            className="relative w-full max-w-4xl bg-black border border-slate-800 rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -129,7 +129,7 @@ const About = () => {
                 "Son univers artistique repose sur l’autodérision, une arme comique qu’il manie avec justesse pour transformer sa réalité en éclats de rire. Son talent a été officiellement couronné en 2024 par le prix du Meilleur Jeune Humoriste au Prexelart (Prix de l’Excellence Artistique).",
                 "En 2025, avec le rodage de son premier spectacle, Evane Lesnar affirme son identité et son ambition : conquérir les grandes scènes internationales avec un humour authentique, moderne et résolument proche de son public.",
               ].map((paragraph, idx) => (
-                <p key={idx} className="text-slate-300 text-lg leading-relaxed mb-4">
+                <p key={idx} className="text-slate-300 text-[16px] leading-relaxed mb-4">
                   {paragraph}
                 </p>
               ))}
@@ -138,19 +138,19 @@ const About = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6">
-            <div className="text-red-500 font-bold text-3xl">~4 ans</div>
+          <div className="bg-black border border-slate-800 rounded-2xl p-6">
+            <div className="text-red-500 font-bold text-3xl">+3 ans</div>
             <div className="text-slate-400 mt-2">Années d’expérience (depuis 2022)</div>
           </div>
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-slate-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">2024</div>
             <div className="text-slate-400 mt-2">Meilleur Jeune Humoriste (Prexelart)</div>
           </div>
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-slate-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">Rodage</div>
             <div className="text-slate-400 mt-2">13 sept 2025 — Silas Bar, Kintambo</div>
           </div>
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-slate-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">Réseaux</div>
             <div className="text-slate-400 mt-2">TikTok: 1388 • Facebook: 606 • Instagram: 273</div>
           </div>
@@ -181,7 +181,7 @@ const About = () => {
                     </div>
 
                     <div className={`${isLeft ? "md:pl-12" : "md:pr-12 md:row-start-1"}`}>
-                      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                      <div className="bg-red-900/20 border border-slate-800 rounded-2xl p-6">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="w-3 h-3 rounded-full bg-red-500" />
                           <div className="text-red-400 font-semibold">{step.year}</div>
@@ -191,7 +191,7 @@ const About = () => {
                         <div className="mt-4">
                           <button
                             onClick={() => setSelectedParcours(step)}
-                            className="px-4 py-2 bg-slate-950 border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
+                            className="px-4 py-2 bg-black border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
                           >
                             Voir détails
                           </button>

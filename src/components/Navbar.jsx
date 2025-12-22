@@ -46,9 +46,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar fixed w-full z-50 transition-all duration-300 ${isScrolled
-        ? "bg-slate-950/90 backdrop-blur-md py-4 shadow-2xl"
-        : "bg-transparent py-6"
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+        ? "bg-black/90 backdrop-blur-md py-4 shadow-2xl border-b border-red-900/40"
+        : "bg-transparent py-6 border-b border-transparent"
         }`}
     >
       <div className="container-custom">
@@ -117,7 +117,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-0 left-0 w-full bg-slate-950 border-b border-slate-800 shadow-2xl p-6 pt-24 animate-slide-down">
+          <div className="md:hidden absolute top-0 left-0 w-full bg-black border-b border-slate-800 shadow-2xl p-6 pt-24 animate-slide-down">
             <div className="space-y-4">
               {navLinks.map((link) => (
                 <Link
@@ -126,7 +126,7 @@ const Navbar = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block py-3 px-4 rounded-lg transition-colors duration-300 ${location.pathname === link.path
                     ? "bg-red-500/10 text-red-500 border-l-4 border-red-500"
-                    : "text-slate-300 hover:bg-slate-900"
+                    : "text-slate-300 hover:bg-black"
                     }`}
                 >
                   {link.name}
@@ -154,7 +154,7 @@ const Navbar = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-slate-900 text-slate-400 hover:text-white hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300"
+                    className="w-10 h-10 bg-black text-slate-400 hover:text-white hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300"
                   >
                     {social.icon}
                   </a>

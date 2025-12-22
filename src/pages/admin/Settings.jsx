@@ -93,7 +93,7 @@ const Settings = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Profile Card */}
-                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 h-fit">
+                    <div className="bg-black border border-slate-800 rounded-2xl p-6 h-fit">
                         <div className="flex flex-col items-center">
                             <div className="w-32 h-32 rounded-full bg-slate-800 overflow-hidden mb-4 relative group cursor-pointer">
                                 {formData.photo ? (
@@ -118,7 +118,7 @@ const Settings = () => {
 
                     {/* Settings Form */}
                     <div className="lg:col-span-2 space-y-6">
-                        <form onSubmit={handleSubmit} className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <form onSubmit={handleSubmit} className="bg-black border border-slate-800 rounded-2xl p-6">
                             <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                                 <FaUser className="text-red-500" /> Informations personnelles
                             </h2>
@@ -142,7 +142,7 @@ const Settings = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
+                                        className="w-full bg-black border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
                                     />
                                 </div>
                                 <div>
@@ -152,7 +152,7 @@ const Settings = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
+                                        className="w-full bg-black border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
                                     />
                                 </div>
                             </div>
@@ -166,7 +166,7 @@ const Settings = () => {
                                         value={formData.photo}
                                         onChange={handleChange}
                                         placeholder="https://example.com/photo.jpg"
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 pl-10 text-white focus:border-red-500 outline-none transition-colors"
+                                        className="w-full bg-black border border-slate-800 rounded-lg p-3 pl-10 text-white focus:border-red-500 outline-none transition-colors"
                                     />
                                     <FaCamera className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                                 </div>
@@ -184,7 +184,7 @@ const Settings = () => {
                                         name="currentPassword"
                                         value={formData.currentPassword}
                                         onChange={handleChange}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
+                                        className="w-full bg-black border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
                                     />
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -195,7 +195,7 @@ const Settings = () => {
                                             name="newPassword"
                                             value={formData.newPassword}
                                             onChange={handleChange}
-                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
+                                            className="w-full bg-black border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
                                         />
                                     </div>
                                     <div>
@@ -205,7 +205,7 @@ const Settings = () => {
                                             name="confirmPassword"
                                             value={formData.confirmPassword}
                                             onChange={handleChange}
-                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
+                                            className="w-full bg-black border border-slate-800 rounded-lg p-3 text-white focus:border-red-500 outline-none transition-colors"
                                         />
                                     </div>
                                 </div>

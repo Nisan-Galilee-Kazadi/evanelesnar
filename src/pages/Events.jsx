@@ -72,7 +72,7 @@ const Events = () => {
                   placeholder="Rechercher un spectacle ou une ville..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-6 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors pl-12"
+                  className="w-full px-6 py-3 bg-black border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors pl-12"
                 />
                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500">
                   <FaSearch />
@@ -87,7 +87,7 @@ const Events = () => {
                 className={`px-6 py-2 rounded-lg font-medium transition-all ${
                   filter === "all"
                     ? "bg-red-600 text-white"
-                    : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                    : "bg-gray-800 text-gray-400 hover:-700"
                 }`}
               >
                 Tous
@@ -97,7 +97,7 @@ const Events = () => {
                 className={`px-6 py-2 rounded-lg font-medium transition-all ${
                   filter === "available"
                     ? "bg-red-600 text-white"
-                    : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                    : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                 }`}
               >
                 Disponibles
@@ -107,7 +107,7 @@ const Events = () => {
                 className={`px-6 py-2 rounded-lg font-medium transition-all flex items-center gap-2 ${
                   filter === "selling-fast"
                     ? "bg-red-600 text-white"
-                    : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                    : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                 }`}
               >
                 <FaFire /> Vente rapide
@@ -144,7 +144,7 @@ const Events = () => {
                   )}
 
                   {/* Date Badge */}
-                  <div className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 text-center">
+                  <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm rounded-lg p-3 text-center">
                     <div className="text-2xl font-bold text-red-500">
                       {new Date(event.date).getDate()}
                     </div>
@@ -264,13 +264,13 @@ const Events = () => {
               instantanément par email et WhatsApp.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <div className="px-4 py-2 bg-slate-800 rounded-lg text-sm text-slate-300 flex items-center gap-2">
+              <div className="px-4 py-2 bg-gray-800 rounded-lg text-sm text-gray-300 flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" /> Paiement sécurisé
               </div>
-              <div className="px-4 py-2 bg-slate-800 rounded-lg text-sm text-slate-300 flex items-center gap-2">
+              <div className="px-4 py-2 bg-gray-800 rounded-lg text-sm text-gray-300 flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" /> Billet instantané
               </div>
-              <div className="px-4 py-2 bg-slate-800 rounded-lg text-sm text-slate-300 flex items-center gap-2">
+              <div className="px-4 py-2 bg-gray-800 rounded-lg text-sm text-gray-300 flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" /> QR Code unique
               </div>
             </div>

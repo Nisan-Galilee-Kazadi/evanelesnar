@@ -230,30 +230,30 @@ const EventDetails = () => {
 
           <Link
             to="/admin/events"
-            className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 text-white px-4 py-2 rounded-lg hover:border-red-500 transition-colors"
+            className="inline-flex items-center gap-2 bg-black border border-slate-800 text-white px-4 py-2 rounded-lg hover:border-red-500 transition-colors"
           >
             <FaArrowLeft /> Retour
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+          <div className="bg-black border border-slate-800 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">Total demandes</div>
             <div className="text-3xl font-bold text-white">{stats.total}</div>
           </div>
-          <div className="bg-slate-900 border border-yellow-500/20 rounded-xl p-4">
+          <div className="bg-black border border-yellow-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2 flex items-center gap-2">
               <FaHourglassHalf className="text-yellow-500" /> En attente
             </div>
             <div className="text-3xl font-bold text-yellow-500">{stats.pending}</div>
           </div>
-          <div className="bg-slate-900 border border-green-500/20 rounded-xl p-4">
+          <div className="bg-black border border-green-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2 flex items-center gap-2">
               <FaCheckCircle className="text-green-500" /> Payées
             </div>
             <div className="text-3xl font-bold text-green-500">{stats.validated}</div>
           </div>
-          <div className="bg-slate-900 border border-red-500/20 rounded-xl p-4">
+          <div className="bg-black border border-red-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2 flex items-center gap-2">
               <FaBan className="text-red-500" /> Annulées
             </div>
@@ -261,13 +261,13 @@ const EventDetails = () => {
           </div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 mb-8">
+        <div className="bg-black border border-slate-800 rounded-xl p-6 mb-8">
           <h2 className="text-xl font-bold text-white mb-2">Description</h2>
           <p className="text-slate-400 leading-relaxed">{event.description}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <div className="bg-black border border-slate-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <FaUsers className="text-red-400" /> Participants payés (par catégorie)
             </h2>
@@ -278,7 +278,7 @@ const EventDetails = () => {
               <div className="space-y-5">
                 {Object.entries(validatedByTicketType).map(([type, group]) => (
                   <div key={type} className="border border-slate-800 rounded-xl overflow-hidden">
-                    <div className="px-4 py-3 bg-slate-950 flex items-center justify-between">
+                    <div className="px-4 py-3 bg-black flex items-center justify-between">
                       <div className="text-white font-semibold">{type}</div>
                       <div className="text-slate-400 text-sm">{group.qty} billets</div>
                     </div>
@@ -298,7 +298,7 @@ const EventDetails = () => {
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => handleCancelOrder(order._id)}
-                              className="px-3 py-2 bg-slate-950 border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
+                              className="px-3 py-2 bg-black border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
                             >
                               Révoquer
                             </button>
@@ -312,7 +312,7 @@ const EventDetails = () => {
             )}
           </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <div className="bg-black border border-slate-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-4">Demandes à valider</h2>
 
             {orders.filter((o) => o.paymentStatus === "pending").length === 0 ? (
@@ -351,7 +351,7 @@ const EventDetails = () => {
                         </button>
                         <button
                           onClick={() => handleCancelOrder(o._id)}
-                          className="px-3 py-2 bg-slate-950 border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
+                          className="px-3 py-2 bg-black border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
                         >
                           Annuler
                         </button>

@@ -43,7 +43,7 @@ const Login = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-slate-900 p-6 rounded-xl border border-slate-800 w-full max-w-md"
+        className="bg-black p-6 rounded-xl border border-slate-800 w-full max-w-md"
       >
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Admin Login
@@ -62,7 +62,7 @@ const Login = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none transition-colors"
+              className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none transition-colors"
               required
             />
           </div>
@@ -76,7 +76,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none transition-colors pr-10"
+                className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none transition-colors pr-10"
                 required
               />
               <button

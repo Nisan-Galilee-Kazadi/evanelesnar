@@ -200,7 +200,7 @@ const EventsManager = () => {
               {events.map((event) => (
                 <div
                   key={event._id}
-                  className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden"
+                  className="bg-black rounded-xl border border-slate-800 overflow-hidden"
                 >
                   <div className="flex flex-col sm:flex-row">
                     {/* Image à gauche */}
@@ -251,7 +251,7 @@ const EventsManager = () => {
                       <div className="flex justify-end space-x-3 pt-3 border-t border-slate-800">
                         <Link
                           to={`/admin/events/${event._id}`}
-                          className="px-4 py-2 bg-slate-950 border border-slate-800 text-white rounded-lg font-medium flex items-center gap-2 hover:border-red-500 transition-colors"
+                          className="px-4 py-2 bg-black border border-slate-800 text-white rounded-lg font-medium flex items-center gap-2 hover:border-red-500 transition-colors"
                         >
                           <FaInfoCircle className="text-white" />
                           <span>Détails</span>
@@ -281,7 +281,7 @@ const EventsManager = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-slate-900 p-6 rounded-xl border border-slate-800 max-w-4xl mx-auto"
+            className="bg-black p-6 rounded-xl border border-slate-800 max-w-4xl mx-auto"
           >
             <h2 className="text-2xl font-bold text-white mb-6">
               {editingEvent ? "Modifier l'événement" : "Nouvel événement"}
@@ -297,7 +297,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, title: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                    className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -309,7 +309,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, image: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                    className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -324,7 +324,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, date: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                    className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -336,7 +336,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, time: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                    className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -353,7 +353,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, venue: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                    className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -365,7 +365,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                    className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -378,7 +378,7 @@ const EventsManager = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
-                  className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none h-32"
+                  className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none h-32"
                   required
                 />
               </div>
@@ -400,7 +400,7 @@ const EventsManager = () => {
                   {formData.tickets.map((ticket, index) => (
                     <div
                       key={index}
-                      className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-950 p-4 rounded border border-slate-800 relative"
+                      className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-black p-4 rounded border border-slate-800 relative"
                     >
                       <input
                         type="text"
@@ -409,7 +409,7 @@ const EventsManager = () => {
                         onChange={(e) =>
                           handleTicketChange(index, "type", e.target.value)
                         }
-                        className="bg-slate-900 border border-slate-700 rounded p-2 text-white text-sm"
+                        className="bg-black border border-slate-700 rounded p-2 text-white text-sm"
                         required
                       />
                       <input
@@ -419,7 +419,7 @@ const EventsManager = () => {
                         onChange={(e) =>
                           handleTicketChange(index, "price", e.target.value)
                         }
-                        className="bg-slate-900 border border-slate-700 rounded p-2 text-white text-sm"
+                        className="bg-black border border-slate-700 rounded p-2 text-white text-sm"
                         required
                       />
                       <input
@@ -429,7 +429,7 @@ const EventsManager = () => {
                         onChange={(e) =>
                           handleTicketChange(index, "total", e.target.value)
                         }
-                        className="bg-slate-900 border border-slate-700 rounded p-2 text-white text-sm"
+                        className="bg-black border border-slate-700 rounded p-2 text-white text-sm"
                         required
                       />
                       {index > 0 && (
@@ -453,7 +453,7 @@ const EventsManager = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, status: e.target.value })
                   }
-                  className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
+                  className="w-full bg-black border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                 >
                   <option value="upcoming">À venir</option>
                   <option value="selling-fast">Vente rapide</option>
