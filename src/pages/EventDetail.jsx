@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { API } from "../utils/api";
 import { paymentMethods } from "../data/mockData";
 import { generateTicketPDF } from "../utils/ticketPDF";
+import Swal from "sweetalert2";
 import {
   FaRegSadTear,
   FaFire,
@@ -164,18 +165,30 @@ const EventDetail = () => {
           setPendingOrder(pendingOrders[event._id]);
           setStep(3);
         } else {
-          alert("Erreur lors de la commande");
+          await Swal.fire({
+            icon: "error",
+            title: "Commande impossible",
+            text: "Erreur lors de la commande.",
+          });
         }
       } catch (error) {
         console.error("Error creating order:", error);
-        alert("Erreur serveur");
+        await Swal.fire({
+          icon: "error",
+          title: "Erreur serveur",
+          text: "Impossible de créer la commande pour le moment.",
+        });
       }
     }
   };
 
   const handleValidateToken = async () => {
     if (!tokenInput.trim()) {
-      alert("Veuillez entrer votre token");
+      await Swal.fire({
+        icon: "warning",
+        title: "Token requis",
+        text: "Veuillez entrer votre token.",
+      });
       return;
     }
 
@@ -191,7 +204,8 @@ const EventDetail = () => {
       });
 
       if (response.ok) {
-        const order = await response.json();
+        const data = await response.json();
+        const order = data?.order || data;
 
         // Generate and download PDF
         await generateTicketPDF(order, event);
@@ -211,14 +225,26 @@ const EventDetail = () => {
         setCustomerInfo({ name: "", email: "", phone: "" });
         setSelectedPayment(null);
 
-        alert("✅ Billet téléchargé avec succès !");
+        await Swal.fire({
+          icon: "success",
+          title: "Billet téléchargé",
+          text: "Votre billet PDF a été téléchargé avec succès.",
+        });
       } else {
         const error = await response.json();
-        alert(`❌ ${error.message || "Token invalide"}`);
+        await Swal.fire({
+          icon: "error",
+          title: "Token invalide",
+          text: error.message || "Token invalide",
+        });
       }
     } catch (error) {
       console.error("Error validating token:", error);
-      alert("Erreur serveur");
+      await Swal.fire({
+        icon: "error",
+        title: "Erreur serveur",
+        text: "Impossible de valider le token pour le moment.",
+      });
     } finally {
       setValidatingToken(false);
     }
@@ -251,7 +277,7 @@ const EventDetail = () => {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3 text-lg">
-                <span className="text-2xl text-orange-500">
+                <span className="text-2xl text-red-500">
                   <FaCalendarAlt />
                 </span>
                 <div>
@@ -270,7 +296,7 @@ const EventDetail = () => {
               </div>
 
               <div className="flex items-center space-x-3 text-lg">
-                <span className="text-2xl text-orange-500">
+                <span className="text-2xl text-red-500">
                   <FaClock />
                 </span>
                 <div>
@@ -280,7 +306,7 @@ const EventDetail = () => {
               </div>
 
               <div className="flex items-center space-x-3 text-lg">
-                <span className="text-2xl text-orange-500">
+                <span className="text-2xl text-red-500">
                   <FaMapMarkerAlt />
                 </span>
                 <div>
@@ -320,13 +346,13 @@ const EventDetail = () => {
               <div className="flex items-center space-x-4">
                 <div
                   className={`flex items-center space-x-2 ${
-                    step >= 1 ? "text-orange-500" : "text-slate-600"
+                    step >= 1 ? "text-red-500" : "text-slate-600"
                   }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                       step >= 1
-                        ? "bg-orange-500 text-white"
+                        ? "bg-red-600 text-white"
                         : "bg-slate-800 text-slate-600"
                     }`}
                   >
@@ -336,18 +362,18 @@ const EventDetail = () => {
                 </div>
                 <div
                   className={`w-16 h-0.5 ${
-                    step >= 2 ? "bg-orange-500" : "bg-slate-800"
+                    step >= 2 ? "bg-red-600" : "bg-slate-800"
                   }`}
                 ></div>
                 <div
                   className={`flex items-center space-x-2 ${
-                    step >= 2 ? "text-orange-500" : "text-slate-600"
+                    step >= 2 ? "text-red-500" : "text-slate-600"
                   }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                       step >= 2
-                        ? "bg-orange-500 text-white"
+                        ? "bg-red-600 text-white"
                         : "bg-slate-800 text-slate-600"
                     }`}
                   >
@@ -357,18 +383,18 @@ const EventDetail = () => {
                 </div>
                 <div
                   className={`w-16 h-0.5 ${
-                    step >= 3 ? "bg-orange-500" : "bg-slate-800"
+                    step >= 3 ? "bg-red-600" : "bg-slate-800"
                   }`}
                 ></div>
                 <div
                   className={`flex items-center space-x-2 ${
-                    step >= 3 ? "text-orange-500" : "text-slate-600"
+                    step >= 3 ? "text-red-500" : "text-slate-600"
                   }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                       step >= 3
-                        ? "bg-orange-500 text-white"
+                        ? "bg-red-600 text-white"
                         : "bg-slate-800 text-slate-600"
                     }`}
                   >
@@ -385,7 +411,7 @@ const EventDetail = () => {
           {/* Step 4: Token Validation (if pending order exists) */}
           {step === 4 && pendingOrder && (
             <div className="card-glass animate-slide-up text-center">
-              <div className="text-6xl mb-6 text-orange-500 flex justify-center">
+              <div className="text-6xl mb-6 text-red-500 flex justify-center">
                 <FaTicketAlt />
               </div>
               <h2 className="text-4xl font-bold text-white mb-4">
@@ -409,7 +435,7 @@ const EventDetail = () => {
                     onChange={(e) =>
                       setTokenInput(e.target.value.toUpperCase())
                     }
-                    className="w-full px-6 py-4 bg-slate-900 border border-slate-700 rounded-lg text-white text-center text-xl font-mono placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="w-full px-6 py-4 bg-slate-900 border border-slate-700 rounded-lg text-white text-center text-xl font-mono placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                   />
                 </div>
 
@@ -486,7 +512,7 @@ const EventDetail = () => {
                             (selectedTickets[ticket.type] || 0) - 1
                           )
                         }
-                        className="w-10 h-10 bg-slate-800 hover:bg-orange-500 rounded-lg font-bold transition-colors"
+                        className="w-10 h-10 bg-slate-800 hover:bg-red-600 rounded-lg font-bold transition-colors"
                         disabled={!selectedTickets[ticket.type]}
                       >
                         -
@@ -501,7 +527,7 @@ const EventDetail = () => {
                             (selectedTickets[ticket.type] || 0) + 1
                           )
                         }
-                        className="w-10 h-10 bg-slate-800 hover:bg-orange-500 rounded-lg font-bold transition-colors"
+                        className="w-10 h-10 bg-slate-800 hover:bg-red-600 rounded-lg font-bold transition-colors"
                         disabled={
                           (selectedTickets[ticket.type] || 0) >=
                           ticket.available
@@ -557,7 +583,7 @@ const EventDetail = () => {
                     onChange={(e) =>
                       setCustomerInfo({ ...customerInfo, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
                   />
                   <input
                     type="email"
@@ -569,7 +595,7 @@ const EventDetail = () => {
                         email: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
                   />
                   <input
                     type="tel"
@@ -581,7 +607,7 @@ const EventDetail = () => {
                         phone: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
                   />
                 </div>
               </div>
@@ -667,7 +693,7 @@ const EventDetail = () => {
           {/* Step 3: Confirmation */}
           {step === 3 && (
             <div className="card-glass text-center animate-slide-up">
-              <div className="text-6xl mb-6 text-orange-500 flex justify-center">
+              <div className="text-6xl mb-6 text-red-500 flex justify-center">
                 <FaMobileAlt />
               </div>
               <h2 className="text-4xl font-bold text-white mb-4">
@@ -678,7 +704,7 @@ const EventDetail = () => {
                 <p className="text-xl text-white mb-4">
                   Pour finaliser votre achat, veuillez effectuer le paiement :
                 </p>
-                <div className="text-3xl font-bold text-orange-500 mb-4 p-4 bg-slate-900 rounded-lg border border-orange-500/30">
+                <div className="text-3xl font-bold text-red-500 mb-4 p-4 bg-slate-900 rounded-lg border border-red-500/30">
                   {
                     paymentMethods.find((m) => m.id === selectedPayment)
                       ?.instructions

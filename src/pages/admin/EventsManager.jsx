@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { FaPlus, FaEdit, FaTrash, FaInfoCircle } from "react-icons/fa";
+import Swal from "sweetalert2";
 import AdminLayout from "../../components/AdminLayout";
 import { API } from "../../utils/api";
+import { Link } from "react-router-dom";
 
 const EventsManager = () => {
   const [events, setEvents] = useState([]);
@@ -92,11 +94,21 @@ const EventsManager = () => {
         resetForm();
       } else {
         const errorData = await response.json();
-        alert(`Erreur: ${errorData.message}`);
+        await Swal.fire({
+          icon: "error",
+          title: "Erreur",
+          text: errorData.message || "Erreur lors de la sauvegarde.",
+          confirmButtonColor: "#dc2626",
+        });
       }
     } catch (error) {
       console.error("Error saving event:", error);
-      alert("Erreur lors de la sauvegarde");
+      await Swal.fire({
+        icon: "error",
+        title: "Erreur serveur",
+        text: "Erreur lors de la sauvegarde.",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
@@ -115,8 +127,17 @@ const EventsManager = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?"))
-      return;
+    const result = await Swal.fire({
+      icon: "warning",
+      title: "Supprimer cet événement ?",
+      text: "Cette action est définitive.",
+      showCancelButton: true,
+      confirmButtonText: "Oui, supprimer",
+      cancelButtonText: "Annuler",
+      confirmButtonColor: "#dc2626",
+    });
+
+    if (!result.isConfirmed) return;
 
     const token = localStorage.getItem("token");
     try {
@@ -170,7 +191,7 @@ const EventsManager = () => {
                 resetForm();
                 setShowForm(true);
               }}
-              className="mb-6 flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
+              className="mb-6 flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
             >
               <FaPlus /> Ajouter un événement
             </button>
@@ -228,16 +249,23 @@ const EventsManager = () => {
 
                       {/* Boutons d'action en bas */}
                       <div className="flex justify-end space-x-3 pt-3 border-t border-slate-800">
+                        <Link
+                          to={`/admin/events/${event._id}`}
+                          className="px-4 py-2 bg-slate-950 border border-slate-800 text-white rounded-lg font-medium flex items-center gap-2 hover:border-red-500 transition-colors"
+                        >
+                          <FaInfoCircle className="text-white" />
+                          <span>Détails</span>
+                        </Link>
                         <button
                           onClick={() => handleEdit(event)}
-                          className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
+                          className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
                         >
                           <FaEdit className="text-white" /> 
                           <span>Modifier</span>
                         </button>
                         <button
                           onClick={() => handleDelete(event._id)}
-                          className="px-4 py-2 bg-purple-600 hover:bg-red-600 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
+                          className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
                         >
                           <FaTrash className="text-white" />
                           <span>Supprimer</span>
@@ -269,7 +297,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, title: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -281,7 +309,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, image: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -296,7 +324,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, date: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -308,7 +336,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, time: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -325,7 +353,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, venue: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -337,7 +365,7 @@ const EventsManager = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
                     }
-                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                     required
                   />
                 </div>
@@ -350,7 +378,7 @@ const EventsManager = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
-                  className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none h-32"
+                  className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none h-32"
                   required
                 />
               </div>
@@ -363,7 +391,7 @@ const EventsManager = () => {
                   <button
                     type="button"
                     onClick={addTicketType}
-                    className="text-sm text-purple-500 hover:text-purple-400 font-semibold"
+                    className="text-sm text-red-500 hover:text-red-400 font-semibold"
                   >
                     + Ajouter un type
                   </button>
@@ -425,7 +453,7 @@ const EventsManager = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, status: e.target.value })
                   }
-                  className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none"
+                  className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none"
                 >
                   <option value="upcoming">À venir</option>
                   <option value="selling-fast">Vente rapide</option>
@@ -447,7 +475,7 @@ const EventsManager = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-semibold transition-colors"
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded font-semibold transition-colors"
                 >
                   {editingEvent ? "Mettre à jour" : "Créer"}
                 </button>

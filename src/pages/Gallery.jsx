@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { galleryData } from '../data/mockData';
-import { FaPlay, FaTimes, FaCamera } from 'react-icons/fa';
+import { useEffect, useMemo, useState } from 'react';
+import { API } from '../utils/api';
+import { FaPlay, FaTimes, FaCamera, FaCalendarAlt, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Gallery = () => {
     const [filter, setFilter] = useState('all');
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [items, setItems] = useState([]);
+    const [selectedMedia, setSelectedMedia] = useState(null);
 
     const categories = [
         { id: 'all', name: 'Tout' },
@@ -14,9 +15,31 @@ const Gallery = () => {
         { id: 'video', name: 'Vidéos' },
     ];
 
-    const filteredGallery = filter === 'all'
-        ? galleryData
-        : galleryData.filter(item => item.category === filter);
+    useEffect(() => {
+        const fetchGalleryMedia = async () => {
+            try {
+                const res = await fetch(API('/api/media?destination=gallery'));
+                const data = await res.json();
+                setItems(Array.isArray(data) ? data : []);
+            } catch (e) {
+                console.error('Error fetching gallery media:', e);
+            }
+        };
+
+        fetchGalleryMedia();
+    }, []);
+
+    const filteredGallery = useMemo(() => {
+        if (filter === 'all') return items;
+        return items.filter(item => item.category === filter);
+    }, [items, filter]);
+
+    const toYoutubeEmbed = (url) => {
+        if (!url) return null;
+        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{6,})/);
+        if (!match) return null;
+        return `https://www.youtube.com/embed/${match[1]}`;
+    };
 
     return (
         <div className="min-h-screen pt-32 pb-20">
@@ -36,7 +59,7 @@ const Gallery = () => {
                             key={cat.id}
                             onClick={() => setFilter(cat.id)}
                             className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === cat.id
-                                ? 'bg-orange-500 text-white'
+                                ? 'bg-red-600 text-white'
                                 : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                                 }`}
                         >
@@ -49,26 +72,26 @@ const Gallery = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredGallery.map((item, idx) => (
                         <div
-                            key={item.id}
+                            key={item._id}
                             className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer animate-slide-up"
                             style={{ animationDelay: `${idx * 0.1}s` }}
-                            onClick={() => item.type === 'image' && setSelectedImage(item)}
+                            onClick={() => setSelectedMedia(item)}
                         >
                             {item.type === 'image' ? (
                                 <img
                                     src={item.url}
-                                    alt={item.title}
+                                    alt={item.title || 'media'}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                             ) : (
                                 <div className="relative w-full h-full">
                                     <img
                                         src={item.thumbnail}
-                                        alt={item.title}
+                                        alt={item.title || 'video'}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/60 transition-all">
-                                        <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                                        <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
                                             <span className="text-3xl text-white pl-1"><FaPlay /></span>
                                         </div>
                                     </div>
@@ -78,8 +101,17 @@ const Gallery = () => {
                             {/* Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                                 <div className="p-6 w-full">
-                                    <h3 className="text-white font-bold text-lg mb-1">{item.title}</h3>
-                                    <p className="text-orange-400 text-sm capitalize">{item.category}</p>
+                                    <h3 className="text-white font-bold text-lg mb-1">{item.title || (item.type === 'video' ? 'Vidéo' : 'Photo')}</h3>
+                                    <p className="text-red-400 text-sm capitalize">{item.category}</p>
+                                    <button
+                                      className="mt-3 w-full bg-slate-900/60 hover:bg-slate-900 text-white text-sm py-2 rounded-lg border border-slate-700"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedMedia(item);
+                                      }}
+                                    >
+                                      Voir détails
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -87,27 +119,82 @@ const Gallery = () => {
                 </div>
 
                 {/* Lightbox */}
-                {selectedImage && (
+                {selectedMedia && (
                     <div
                         className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-slide-up"
-                        onClick={() => setSelectedImage(null)}
+                        onClick={() => setSelectedMedia(null)}
                     >
                         <button
-                            className="absolute top-6 right-6 w-12 h-12 bg-slate-800 hover:bg-orange-500 rounded-full flex items-center justify-center text-2xl transition-colors"
-                            onClick={() => setSelectedImage(null)}
+                            className="absolute top-6 right-6 w-12 h-12 bg-slate-800 hover:bg-red-600 rounded-full flex items-center justify-center text-2xl transition-colors"
+                            onClick={() => setSelectedMedia(null)}
                         >
                             <span className="text-white"><FaTimes /></span>
                         </button>
-                        <div className="max-w-5xl max-h-full">
-                            <img
-                                src={selectedImage.url}
-                                alt={selectedImage.title}
-                                className="max-w-full max-h-[90vh] object-contain rounded-lg"
-                                onClick={(e) => e.stopPropagation()}
-                            />
-                            <div className="text-center mt-6">
-                                <h3 className="text-white text-2xl font-bold mb-2">{selectedImage.title}</h3>
-                                <p className="text-orange-400 capitalize">{selectedImage.category}</p>
+                        <div className="w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                              <div className="bg-slate-950">
+                                {selectedMedia.type === 'image' ? (
+                                  <img
+                                    src={selectedMedia.url}
+                                    alt={selectedMedia.title || 'media'}
+                                    className="w-full max-h-[520px] object-cover"
+                                  />
+                                ) : (
+                                  <div className="aspect-video">
+                                    <iframe
+                                      width="100%"
+                                      height="100%"
+                                      src={toYoutubeEmbed(selectedMedia.url) || selectedMedia.url}
+                                      title={selectedMedia.title || 'Media'}
+                                      frameBorder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                      allowFullScreen
+                                    ></iframe>
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="p-6">
+                                <div className="text-center">
+                                  <h3 className="text-white text-2xl font-bold mb-2">
+                                    {selectedMedia.title || (selectedMedia.type === 'video' ? 'Vidéo' : 'Photo')}
+                                  </h3>
+                                  <p className="text-red-400 capitalize">{selectedMedia.category}</p>
+                                </div>
+
+                                {selectedMedia.description && (
+                                  <p className="text-slate-300 mt-6 whitespace-pre-line">
+                                    {selectedMedia.description}
+                                  </p>
+                                )}
+
+                                {selectedMedia.sourceEvent && (
+                                  <div className="mt-6 bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                    <div className="text-white font-semibold mb-2">Événement lié</div>
+                                    <div className="text-slate-400 text-sm space-y-2">
+                                      <div className="flex items-center gap-2">
+                                        <FaCalendarAlt className="text-red-500" />
+                                        <span>
+                                          {new Date(selectedMedia.sourceEvent.date).toLocaleDateString('fr-FR', {
+                                            weekday: 'long',
+                                            day: 'numeric',
+                                            month: 'long',
+                                            year: 'numeric',
+                                          })}
+                                        </span>
+                                      </div>
+                                      <div className="flex items-center gap-2">
+                                        <FaClock className="text-red-500" />
+                                        <span>{selectedMedia.sourceEvent.time}</span>
+                                      </div>
+                                      <div className="flex items-center gap-2">
+                                        <FaMapMarkerAlt className="text-red-500" />
+                                        <span>{selectedMedia.sourceEvent.venue}, {selectedMedia.sourceEvent.city}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                         </div>
                     </div>

@@ -8,9 +8,7 @@ import {
     FaPaperPlane,
     FaFacebookF,
     FaInstagram,
-    FaYoutube,
     FaTiktok,
-    FaTwitter
 } from 'react-icons/fa';
 
 const Contact = () => {
@@ -44,14 +42,14 @@ const Contact = () => {
         {
             icon: <FaEnvelope />,
             title: 'Email',
-            value: 'contact@evanlesnar.com',
-            link: 'mailto:contact@evanlesnar.com'
+            value: 'evanebukasa@gmail.com',
+            link: 'mailto:evanebukasa@gmail.com'
         },
         {
             icon: <FaPhoneAlt />,
             title: 'Téléphone',
-            value: '+243 000 000 000',
-            link: 'tel:+243000000000'
+            value: '+243 89 446 1721',
+            link: 'tel:+243 89 446 1721'
         },
         {
             icon: <FaWhatsapp />,
@@ -68,11 +66,9 @@ const Contact = () => {
     ];
 
     const socialLinks = [
-        { name: 'Facebook', icon: <FaFacebookF />, url: '#', color: 'hover:bg-blue-600' },
-        { name: 'Instagram', icon: <FaInstagram />, url: '#', color: 'hover:bg-pink-600' },
-        { name: 'YouTube', icon: <FaYoutube />, url: '#', color: 'hover:bg-red-600' },
-        { name: 'TikTok', icon: <FaTiktok />, url: '#', color: 'hover:bg-slate-800' },
-        { name: 'Twitter', icon: <FaTwitter />, url: '#', color: 'hover:bg-sky-600' },
+        { name: 'Facebook', icon: <FaFacebookF />, url: 'https://www.facebook.com/people/Evane-Lesnar/100081707015576/#', color: 'hover:bg-red-600' },
+        { name: 'Instagram', icon: <FaInstagram />, url: 'https://www.instagram.com/evanelesnar/?__d=dist', color: 'hover:bg-red-700' },
+        { name: 'TikTok', icon: <FaTiktok />, url: 'https://www.tiktok.com/@evanelesnar/photo/7579940946217880844', color: 'hover:bg-slate-800' },
     ];
 
     return (
@@ -107,7 +103,7 @@ const Contact = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                                         placeholder="Votre nom"
                                     />
                                 </div>
@@ -120,7 +116,7 @@ const Contact = () => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                                         placeholder="votre@email.com"
                                     />
                                 </div>
@@ -132,7 +128,7 @@ const Contact = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
                                         placeholder="+243 000 000 000"
                                     />
                                 </div>
@@ -144,7 +140,7 @@ const Contact = () => {
                                         value={formData.subject}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-orange-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
                                     >
                                         <option value="">Sélectionnez un sujet</option>
                                         <option value="booking">Demande de booking</option>
@@ -163,7 +159,7 @@ const Contact = () => {
                                         onChange={handleChange}
                                         required
                                         rows="5"
-                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                                        className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
                                         placeholder="Votre message..."
                                     ></textarea>
                                 </div>
@@ -183,11 +179,11 @@ const Contact = () => {
                                 <a
                                     key={idx}
                                     href={info.link}
-                                    className="card group hover:border-orange-500 transition-all"
+                                    className="card group hover:border-red-500 transition-all"
                                 >
-                                    <div className="text-4xl mb-3 text-orange-500 ">{info.icon}</div>
+                                    <div className="text-4xl mb-3 text-red-500 ">{info.icon}</div>
                                     <h3 className="text-white font-bold mb-1">{info.title}</h3>
-                                    <p className="text-slate-400 text-sm group-hover:text-orange-400 transition-colors">
+                                    <p className="text-slate-400 text-sm group-hover:text-red-400 transition-colors">
                                         {info.value}
                                     </p>
                                 </a>
@@ -227,20 +223,20 @@ const Contact = () => {
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Dimanche</span>
-                                    <span className="text-orange-400">Fermé</span>
+                                    <span className="text-red-400">Fermé</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Booking CTA */}
-                        <div className="card bg-gradient-to-br from-orange-600 to-red-600 border-none">
+                        <div className="card bg-gradient-to-br from-red-700 to-red-900 border-none">
                             <h3 className="text-2xl font-bold text-white mb-2">
                                 Booking professionnel
                             </h3>
                             <p className="text-white/90 mb-4">
                                 Pour les demandes de spectacles privés ou événements d'entreprise
                             </p>
-                            <a href="mailto:booking@evanlesnar.com" className="btn bg-white text-orange-600 hover:bg-slate-100 w-full">
+                            <a href="mailto:evanebukasa@gmail.com" className="btn bg-white text-red-700 hover:bg-slate-100 w-full">
                                 Demande de booking
                             </a>
                         </div>

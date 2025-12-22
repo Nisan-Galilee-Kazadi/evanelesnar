@@ -1,12 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AdminFooter from "./AdminFooter";
+import logo from "../images/logo.png";
 import {
   FaHome,
   FaCalendarAlt,
   FaTicketAlt,
   FaSignOutAlt,
   FaUser,
+  FaPhotoVideo,
+  FaCog,
   FaBars,
   FaTimes,
   FaChevronLeft,
@@ -28,6 +31,8 @@ const AdminLayout = ({ children }) => {
     { path: "/admin/dashboard", icon: FaHome, label: "Tableau de bord" },
     { path: "/admin/events", icon: FaCalendarAlt, label: "Événements" },
     { path: "/admin/orders", icon: FaTicketAlt, label: "Commandes" },
+    { path: "/admin/media", icon: FaPhotoVideo, label: "Médias" },
+    { path: "/admin/settings", icon: FaCog, label: "Paramètres" },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -56,11 +61,9 @@ const AdminLayout = ({ children }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 h-screen ${
-          isCollapsed ? "w-20" : "w-64"
-        } bg-slate-900 border-r border-slate-800 flex flex-col transform transition-all duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:fixed`}
+        className={`fixed inset-y-0 left-0 z-40 h-screen ${isCollapsed ? "w-20" : "w-64"
+          } bg-slate-900 border-r border-slate-800 flex flex-col transform transition-all duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
+          } md:translate-x-0 md:fixed`}
       >
         {/* En-tête mobile */}
         <div className="p-4 border-b border-slate-800 flex items-center justify-between md:hidden">
@@ -92,8 +95,8 @@ const AdminLayout = ({ children }) => {
                 </p> */}
               </div>
             ) : (
-              <div className="flex items-center justify-center w-full">
-                <h1 className="text-lg font-bold text-white">E</h1>
+              <div className="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-900 rounded mx-auto overflow-hidden p-0.5">
+                <img src={logo} alt="Logo" className="w-full h-full object-contain contrast-125 brightness-90 saturate-150" />
               </div>
             )}
 
@@ -110,7 +113,7 @@ const AdminLayout = ({ children }) => {
         {/* Info admin */}
         <div className="p-4 border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-500">
+            <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-900 rounded-lg flex items-center justify-center text-white overflow-hidden p-0.5">
               <FaUser />
             </div>
             {!isCollapsed && (
@@ -119,7 +122,7 @@ const AdminLayout = ({ children }) => {
                   {admin.name || "Admin"}
                 </div>
                 <div className="text-slate-400 text-xs truncate">
-                  {admin.email || "admin@evanlesnar.com"}
+                  {admin.email || "evanebukasa@gmail.com"}
                 </div>
               </div>
             )}
@@ -140,13 +143,11 @@ const AdminLayout = ({ children }) => {
                   onClick={() => {
                     setIsOpen(false);
                   }}
-                  className={`flex items-center ${
-                    isCollapsed ? "justify-center" : "gap-3"
-                  } px-4 py-3 rounded-lg transition-all ${
-                    isActive
-                      ? "bg-purple-500 text-white shadow-lg shadow-purple-500/20"
+                  className={`flex items-center ${isCollapsed ? "justify-center" : "gap-3"
+                    } px-4 py-3 rounded-lg transition-all ${isActive
+                      ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
                       : "text-slate-400 hover:bg-slate-800 hover:text-white"
-                  }`}
+                    }`}
                 >
                   <Icon size={20} />
                   {!isCollapsed && (
@@ -165,9 +166,8 @@ const AdminLayout = ({ children }) => {
               handleLogout();
               setIsOpen(false);
             }}
-            className={`flex items-center ${
-              isCollapsed ? "justify-center" : "gap-3"
-            } w-full px-4  text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-colors`}
+            className={`flex items-center ${isCollapsed ? "justify-center" : "gap-3"
+              } w-full px-4  text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-colors`}
           >
             <FaSignOutAlt size={20} />
             {!isCollapsed && <span className="font-medium">Déconnexion</span>}
@@ -196,15 +196,19 @@ const AdminLayout = ({ children }) => {
           {/* Info utilisateur */}
           <div className="flex items-center gap-4">
             <div className="md:hidden">
-              <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-500 font-semibold">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-900 rounded-lg flex items-center justify-center text-white font-semibold overflow-hidden p-0.5">
                 {admin.photo ? (
                   <img
                     src={admin.photo}
                     alt="avatar"
-                    className="w-full h-full object-cover rounded-full"
+                    className="w-full h-full object-cover rounded-md"
                   />
                 ) : (
-                  'EL'
+                  <img
+                    src={logo}
+                    alt="avatar"
+                    className="w-full h-full object-contain contrast-125 brightness-90 saturate-150"
+                  />
                 )}
               </div>
             </div>
@@ -217,15 +221,19 @@ const AdminLayout = ({ children }) => {
                   {admin.role || 'Administrateur'}
                 </div>
               </div>
-              <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-500 font-semibold">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-900 rounded-lg flex items-center justify-center text-white font-semibold overflow-hidden p-0.5">
                 {admin.photo ? (
                   <img
                     src={admin.photo}
                     alt="avatar"
-                    className="w-full h-full object-cover rounded-full"
+                    className="w-full h-full object-cover rounded-md"
                   />
                 ) : (
-                  'EL'
+                  <img
+                    src={logo}
+                    alt="avatar"
+                    className="w-full h-full object-contain contrast-125 brightness-90 saturate-150"
+                  />
                 )}
               </div>
             </div>
@@ -236,7 +244,7 @@ const AdminLayout = ({ children }) => {
         <main className="flex-1 overflow-y-auto bg-slate-950 px-4 sm:px-6 py-6">
           {children}
         </main>
-        
+
         {/* Footer Admin */}
         <AdminFooter />
       </div>

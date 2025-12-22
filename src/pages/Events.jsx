@@ -72,7 +72,7 @@ const Events = () => {
                   placeholder="Rechercher un spectacle ou une ville..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-6 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors pl-12"
+                  className="w-full px-6 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors pl-12"
                 />
                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500">
                   <FaSearch />
@@ -86,7 +86,7 @@ const Events = () => {
                 onClick={() => setFilter("all")}
                 className={`px-6 py-2 rounded-lg font-medium transition-all ${
                   filter === "all"
-                    ? "bg-orange-500 text-white"
+                    ? "bg-red-600 text-white"
                     : "bg-slate-800 text-slate-400 hover:bg-slate-700"
                 }`}
               >
@@ -96,7 +96,7 @@ const Events = () => {
                 onClick={() => setFilter("available")}
                 className={`px-6 py-2 rounded-lg font-medium transition-all ${
                   filter === "available"
-                    ? "bg-orange-500 text-white"
+                    ? "bg-red-600 text-white"
                     : "bg-slate-800 text-slate-400 hover:bg-slate-700"
                 }`}
               >
@@ -106,7 +106,7 @@ const Events = () => {
                 onClick={() => setFilter("selling-fast")}
                 className={`px-6 py-2 rounded-lg font-medium transition-all flex items-center gap-2 ${
                   filter === "selling-fast"
-                    ? "bg-orange-500 text-white"
+                    ? "bg-red-600 text-white"
                     : "bg-slate-800 text-slate-400 hover:bg-slate-700"
                 }`}
               >
@@ -145,7 +145,7 @@ const Events = () => {
 
                   {/* Date Badge */}
                   <div className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 text-center">
-                    <div className="text-2xl font-bold text-orange-500">
+                    <div className="text-2xl font-bold text-red-500">
                       {new Date(event.date).getDate()}
                     </div>
                     <div className="text-xs text-slate-300">
@@ -164,7 +164,7 @@ const Events = () => {
 
                   <div className="space-y-2 mb-4 text-slate-400">
                     <div className="flex items-center space-x-2">
-                      <span className="text-orange-500">
+                      <span className="text-red-500">
                         <FaCalendarAlt />
                       </span>
                       <span>
@@ -177,13 +177,13 @@ const Events = () => {
                       </span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <span className="text-orange-500">
+                      <span className="text-red-500">
                         <FaClock />
                       </span>
                       <span>{event.time}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <span className="text-orange-500">
+                      <span className="text-red-500">
                         <FaMapMarkerAlt />
                       </span>
                       <span>
@@ -215,7 +215,7 @@ const Events = () => {
                           )}
                           {ticket.type}
                         </span>
-                        <span className="text-orange-500 font-bold">
+                        <span className="text-red-500 font-bold">
                           {ticket.price.toLocaleString()} {ticket.currency}
                         </span>
                       </div>

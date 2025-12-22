@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../images/logo.png";
 import {
   FaTicketAlt,
   FaMask,
   FaFacebookF,
   FaInstagram,
-  FaYoutube,
   FaTiktok,
   FaWhatsapp,
 } from "react-icons/fa";
@@ -32,14 +32,13 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { name: "Facebook", icon: <FaFacebookF />, url: "https://facebook.com" },
-    { name: "Instagram", icon: <FaInstagram />, url: "https://instagram.com" },
-    { name: "YouTube", icon: <FaYoutube />, url: "https://youtube.com" },
-    { name: "TikTok", icon: <FaTiktok />, url: "https://tiktok.com" },
+    { name: "Facebook", icon: <FaFacebookF />, url: "https://www.facebook.com/people/Evane-Lesnar/100081707015576/#" },
+    { name: "Instagram", icon: <FaInstagram />, url: "https://www.instagram.com/evanelesnar/?__d=dist" },
+    { name: "TikTok", icon: <FaTiktok />, url: "https://www.tiktok.com/@evanelesnar/photo/7579940946217880844" },
     {
       name: "WhatsApp",
       icon: <FaWhatsapp />,
-      url: "https://wa.me/243000000000",
+      url: "https://wa.me/243894461721",
     },
   ];
 
@@ -47,26 +46,23 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-slate-950/90 backdrop-blur-md py-4 shadow-2xl"
-          : "bg-transparent py-6"
-      }`}
+      className={`navbar fixed w-full z-50 transition-all duration-300 ${isScrolled
+        ? "bg-slate-950/90 backdrop-blur-md py-4 shadow-2xl"
+        : "bg-transparent py-6"
+        }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-orange-500/20">
-              <span className="text-2xl text-white">
-                <FaMask />
-              </span>
+            <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-900 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-red-600/20 overflow-hidden p-0.5">
+              <img src={logo} alt="Logo" className="w-full h-full object-contain contrast-125 brightness-90 saturate-150 drop-shadow-sm" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white transition-all duration-300 group-hover:scale-110 group-hover:tracking-wider">
                 Evan Lesnar
               </h1>
-              <p className="text-xs text-orange-500 font-medium tracking-wider">
+              <p className="text-xs text-red-500 font-medium tracking-wider">
                 HUMORISTE
               </p>
             </div>
@@ -78,17 +74,15 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative text-sm font-medium transition-colors duration-300 group ${
-                  location.pathname === link.path
-                    ? "text-orange-500"
-                    : "text-slate-300 hover:text-orange-500"
-                }`}
+                className={`relative text-sm font-medium transition-colors duration-300 group ${location.pathname === link.path
+                  ? "text-red-500"
+                  : "text-slate-300 hover:text-red-500"
+                  }`}
               >
                 {link.name}
                 <span
-                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 transition-all duration-300 group-hover:w-full ${
-                    location.pathname === link.path ? "w-full" : ""
-                  }`}
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-600 to-red-900 transition-all duration-300 group-hover:w-full ${location.pathname === link.path ? "w-full" : ""
+                    }`}
                 ></span>
               </Link>
             ))}
@@ -107,19 +101,16 @@ const Navbar = () => {
             className="md:hidden w-10 h-10 flex flex-col items-center justify-center space-y-1.5 group z-50 relative"
           >
             <span
-              className={`w-6 h-0.5 bg-orange-500 transition-all duration-300 ${
-                isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
-              }`}
+              className={`w-6 h-0.5 bg-red-500 transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
+                }`}
             ></span>
             <span
-              className={`w-6 h-0.5 bg-orange-500 transition-all duration-300 ${
-                isMobileMenuOpen ? "opacity-0" : ""
-              }`}
+              className={`w-6 h-0.5 bg-red-500 transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""
+                }`}
             ></span>
             <span
-              className={`w-6 h-0.5 bg-orange-500 transition-all duration-300 ${
-                isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
+              className={`w-6 h-0.5 bg-red-500 transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                }`}
             ></span>
           </button>
         </div>
@@ -133,11 +124,10 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block py-3 px-4 rounded-lg transition-colors duration-300 ${
-                    location.pathname === link.path
-                      ? "bg-orange-500/10 text-orange-500 border-l-4 border-orange-500"
-                      : "text-slate-300 hover:bg-slate-900"
-                  }`}
+                  className={`block py-3 px-4 rounded-lg transition-colors duration-300 ${location.pathname === link.path
+                    ? "bg-red-500/10 text-red-500 border-l-4 border-red-500"
+                    : "text-slate-300 hover:bg-slate-900"
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -164,7 +154,7 @@ const Navbar = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-slate-900 text-slate-400 hover:text-white hover:bg-orange-500 rounded-full flex items-center justify-center transition-all duration-300"
+                    className="w-10 h-10 bg-slate-900 text-slate-400 hover:text-white hover:bg-red-600 rounded-full flex items-center justify-center transition-all duration-300"
                   >
                     {social.icon}
                   </a>

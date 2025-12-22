@@ -8,6 +8,7 @@ import {
   FaCalendar,
   FaCreditCard,
 } from "react-icons/fa";
+import Swal from "sweetalert2";
 import AdminLayout from "../../components/AdminLayout";
 import { API } from "../../utils/api";
 
@@ -53,12 +54,17 @@ const Orders = () => {
   }, []);
 
   const handleValidate = async (orderId) => {
-    if (
-      !window.confirm(
-        "Confirmer la réception du paiement pour cette commande ?"
-      )
-    )
-      return;
+    const result = await Swal.fire({
+      icon: "question",
+      title: "Valider la commande ?",
+      text: "Confirmer la réception du paiement pour cette commande ?",
+      showCancelButton: true,
+      confirmButtonText: "Oui, valider",
+      cancelButtonText: "Annuler",
+      confirmButtonColor: "#dc2626",
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       const token = localStorage.getItem("token");
@@ -71,13 +77,28 @@ const Orders = () => {
 
       if (response.ok) {
         fetchOrders();
-        alert("Commande validée avec succès !");
+        await Swal.fire({
+          icon: "success",
+          title: "Commande validée",
+          text: "Le token a été envoyé au client.",
+          confirmButtonColor: "#dc2626",
+        });
       } else {
-        alert("Erreur lors de la validation");
+        await Swal.fire({
+          icon: "error",
+          title: "Erreur",
+          text: "Erreur lors de la validation.",
+          confirmButtonColor: "#dc2626",
+        });
       }
     } catch (error) {
       console.error("Error validating order:", error);
-      alert("Erreur serveur");
+      await Swal.fire({
+        icon: "error",
+        title: "Erreur serveur",
+        text: "Impossible de valider la commande pour le moment.",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
@@ -152,7 +173,7 @@ const Orders = () => {
               placeholder="Rechercher par nom, email, téléphone ou ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-purple-500 outline-none"
+              className="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-red-500 outline-none"
             />
           </div>
 
@@ -160,7 +181,7 @@ const Orders = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-slate-900 border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-purple-500 outline-none"
+              className="bg-slate-900 border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-red-500 outline-none"
             >
               <option value="all">Tous les statuts</option>
               <option value="pending">En attente</option>
@@ -170,7 +191,7 @@ const Orders = () => {
             <select
               value={eventFilter}
               onChange={(e) => setEventFilter(e.target.value)}
-              className="bg-slate-900 border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-purple-500 outline-none"
+              className="bg-slate-900 border border-slate-800 rounded-xl py-3 px-4 text-white focus:border-red-500 outline-none"
             >
               <option value="all">Tous les événements</option>
               {events.map((event) => (
@@ -228,7 +249,7 @@ const Orders = () => {
                       </div>
                       <div>
                         <div className="text-slate-400 text-xs mb-1">Total</div>
-                        <div className="text-purple-400 font-bold text-lg">
+                        <div className="text-red-400 font-bold text-lg">
                           {order.totalAmount.toLocaleString()} CDF
                         </div>
                       </div>
@@ -268,7 +289,7 @@ const Orders = () => {
                       {/* Customer Info */}
                       <div>
                         <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                          <FaEnvelope className="text-purple-500" />
+                          <FaEnvelope className="text-red-500" />
                           Informations Client
                         </h3>
                         <div className="space-y-2 text-sm">
@@ -298,7 +319,7 @@ const Orders = () => {
                       {/* Order Info */}
                       <div>
                         <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                          <FaCalendar className="text-purple-500" />
+                          <FaCalendar className="text-red-500" />
                           Détails Commande
                         </h3>
                         <div className="space-y-2 text-sm">
@@ -354,7 +375,7 @@ const Orders = () => {
                               <span className="text-white">
                                 {ticket.quantity}x {ticket.type}
                               </span>
-                              <span className="text-purple-400 font-semibold">
+                              <span className="text-red-400 font-semibold">
                                 {(
                                   ticket.price * ticket.quantity
                                 ).toLocaleString()}{" "}
@@ -362,9 +383,9 @@ const Orders = () => {
                               </span>
                             </div>
                           ))}
-                          <div className="flex justify-between items-center pt-4 mt-2 border-t-2 border-purple-500/20">
+                          <div className="flex justify-between items-center pt-4 mt-2 border-t-2 border-red-500/20">
                             <span className="text-white font-bold">Total</span>
-                            <span className="text-purple-400 font-bold text-xl">
+                            <span className="text-red-400 font-bold text-xl">
                               {order.totalAmount.toLocaleString()} CDF
                             </span>
                           </div>

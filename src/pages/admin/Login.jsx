@@ -62,7 +62,7 @@ const Login = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none transition-colors"
+              className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none transition-colors"
               required
             />
           </div>
@@ -76,7 +76,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-purple-500 outline-none transition-colors pr-10"
+                className="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-red-500 outline-none transition-colors pr-10"
                 required
               />
               <button
@@ -91,7 +91,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-semibold transition-colors"
+            className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded font-semibold transition-colors"
           >
             Se connecter
           </button>

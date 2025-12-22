@@ -28,7 +28,7 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-orange-500 to-red-600 text-white hover:shadow-orange-500/50;
+    @apply bg-gradient-to-r from-red-600 to-red-800 text-white hover:shadow-red-600/50;
   }
 
   .btn-secondary {
@@ -36,7 +36,7 @@
   }
 
   .btn-outline {
-    @apply border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white;
+    @apply border-2 border-red-500 text-red-500 hover:bg-red-600 hover:text-white;
   }
 
   .btn-vip {
@@ -45,7 +45,7 @@
 
   /* Cards */
   .card {
-    @apply bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 transition-all duration-300 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-500/10;
+    @apply bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 transition-all duration-300 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10;
   }
 
   .card-glass {
@@ -54,21 +54,21 @@
 
   /* Event Card */
   .event-card {
-    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500 transition-all duration-500;
+    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-red-500 transition-all duration-500;
   }
 
   /* Mobile Money Icons */
   .payment-icon {
-    @apply w-14 h-14 md:w-20 md:h-20 rounded-xl bg-white p-2 md:p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-2xl border-4 border-transparent hover:border-orange-500;
+    @apply w-14 h-14 md:w-20 md:h-20 rounded-xl bg-white p-2 md:p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-2xl border-4 border-transparent hover:border-red-500;
   }
 
   .payment-icon.active {
-    @apply border-orange-500 shadow-xl shadow-orange-500/50;
+    @apply border-red-500 shadow-xl shadow-red-500/50;
   }
 
   /* Ticket */
   .ticket {
-    @apply relative bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-dashed border-orange-500 rounded-lg p-6 overflow-hidden;
+    @apply relative bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-dashed border-red-500 rounded-lg p-6 overflow-hidden;
   }
 
   /* Animations */
@@ -90,7 +90,7 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-800 bg-clip-text text-transparent;
   }
 
   /* Container */
@@ -105,13 +105,13 @@
 
   /* Hero gradient overlay */
   .hero-overlay {
-    @apply absolute inset-0 bg-gradient-to-br from-slate-950/95 via-purple-900/50 to-slate-950/95;
+    @apply absolute inset-0 bg-gradient-to-br from-slate-950/95 via-red-950/50 to-slate-950/95;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-red-500 to-red-800 bg-clip-text text-transparent;
   }
 
   .text-gradient-secondary {
@@ -138,11 +138,11 @@
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
   }
 
   to {
-    box-shadow: 0 0 40px rgba(255, 107, 0, 0.6);
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
   }
 }
 
@@ -168,7 +168,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(255 107 0);
+  background: rgb(220 38 38);
   border-radius: 5px;
 }
 

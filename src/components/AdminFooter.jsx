@@ -8,7 +8,7 @@ const AdminFooter = () => {
       <div className="flex items-center justify-between">
         <p>{currentYear} Evan Lesnar. Tous droits réservés.</p>
         <div className="flex items-center space-x-4">
-          <Link to="/terms" className="hover:text-purple-400 transition-colors">
+          <Link to="/terms" className="hover:text-red-400 transition-colors">
             Conditions d'utilisation
           </Link>
         

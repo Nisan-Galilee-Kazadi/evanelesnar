@@ -124,11 +124,11 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {statCards.map((stat, index) => {
             const Icon = stat.icon;
-            const colorClasses = {
-              purple: "from-purple-500 to-purple-600",
+            const gradients = {
+              purple: "from-red-600 to-red-700",
               blue: "from-blue-500 to-blue-600",
               green: "from-green-500 to-green-600",
-              orange: "from-orange-500 to-orange-600",
+              orange: "from-red-600 to-red-700",
             };
 
             return (
@@ -143,7 +143,7 @@ const Dashboard = () => {
                     <div className="flex items-start justify-between mb-4">
                       <div
                         className={`p-3 bg-gradient-to-br ${
-                          colorClasses[stat.color]
+                          gradients[stat.color] || gradients.purple
                         } rounded-lg`}
                       >
                         <Icon className="text-white" size={24} />
@@ -171,7 +171,7 @@ const Dashboard = () => {
           {/* Quick Actions */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <FaChartLine className="text-purple-500" />
+              <FaChartLine className="text-red-500" />
               Actions rapides
             </h2>
             <div className="space-y-3">
@@ -179,7 +179,7 @@ const Dashboard = () => {
                 <div className="p-4 bg-slate-800/50 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer group">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <FaCalendarAlt className="text-purple-500" />
+                      <FaCalendarAlt className="text-red-500" />
                       <span className="text-white font-medium">
                         Créer un événement
                       </span>
@@ -240,7 +240,7 @@ const Dashboard = () => {
                     <div className="text-sm text-slate-400">
                       {order.event?.title || "Événement supprimé"}
                     </div>
-                    <div className="text-sm text-purple-400 font-semibold mt-1">
+                    <div className="text-sm text-red-400 font-semibold mt-1">
                       {order.totalAmount.toLocaleString()} CDF
                     </div>
                   </div>

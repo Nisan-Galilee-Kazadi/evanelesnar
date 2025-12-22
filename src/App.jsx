@@ -15,6 +15,9 @@ import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
 import EventsManager from './pages/admin/EventsManager';
 import Orders from './pages/admin/Orders';
+import EventDetails from './pages/admin/EventDetails';
+import MediaManager from './pages/admin/MediaManager';
+import Settings from './pages/admin/Settings';
 
 function App() {
   return (
@@ -37,7 +40,10 @@ function App() {
           <Route path="/admin" element={<AdminRoute />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="events" element={<EventsManager />} />
+            <Route path="events/:id" element={<EventDetails />} />
             <Route path="orders" element={<Orders />} />
+            <Route path="media" element={<MediaManager />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>
         <Footer />

@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
+import logo from "../images/logo.png";
 import {
   FaFacebookF,
   FaInstagram,
-  FaYoutube,
   FaTiktok,
   FaWhatsapp,
   FaEnvelope,
@@ -20,10 +20,9 @@ const Footer = () => {
   }
 
   const socialLinks = [
-    { name: "Facebook", icon: <FaFacebookF />, url: "https://facebook.com" },
-    { name: "Instagram", icon: <FaInstagram />, url: "https://instagram.com" },
-    { name: "YouTube", icon: <FaYoutube />, url: "https://youtube.com" },
-    { name: "TikTok", icon: <FaTiktok />, url: "https://tiktok.com" },
+    { name: "Facebook", icon: <FaFacebookF />, url: "https://www.facebook.com/people/Evane-Lesnar/100081707015576/#" },
+    { name: "Instagram", icon: <FaInstagram />, url: "https://www.instagram.com/evanelesnar/?__d=dist" },
+    { name: "TikTok", icon: <FaTiktok />, url: "https://www.tiktok.com/@evanelesnar/photo/7579940946217880844" },
     {
       name: "WhatsApp",
       icon: <FaWhatsapp />,
@@ -45,8 +44,8 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center space-x-3 mb-4 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
-                <span className="text-2xl text-white font-bold">EL</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-900 rounded-lg flex items-center justify-center overflow-hidden p-0.5">
+                <img src={logo} alt="Logo" className="w-full h-full object-contain contrast-125 brightness-90 saturate-150 drop-shadow-sm" />
               </div>
               <h3 className="text-2xl font-bold text-gradient transition-all duration-300 group-hover:scale-110 group-hover:tracking-wider">
                 Evan Lesnar
@@ -63,7 +62,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-slate-800 hover:bg-orange-500 text-slate-300 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110"
+                  className="w-10 h-10 bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110"
                   title={social.name}
                 >
                   <span className="text-xl">{social.icon}</span>
@@ -80,7 +79,7 @@ const Footer = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-slate-400 hover:text-orange-500 transition-colors duration-300 flex items-center"
+                    className="text-slate-400 hover:text-red-500 transition-colors duration-300 flex items-center"
                   >
                     <span className="mr-2">›</span> {link.name}
                   </Link>
@@ -94,29 +93,29 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-4 text-white">Contact</h4>
             <ul className="space-y-3 text-slate-400">
               <li className="flex items-center space-x-3">
-                <span className="text-orange-500">
+                <span className="text-red-500">
                   <FaEnvelope />
                 </span>
                 <a
-                  href="mailto:contact@evanlesnar.com"
-                  className="hover:text-orange-500 transition-colors"
+                  href="mailto:evanebukasa@gmail.com"
+                  className="hover:text-red-500 transition-colors"
                 >
-                  contact@evanlesnar.com
+                  evanebukasa@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <span className="text-orange-500 transform -scale-x-100">
+                <span className="text-red-500 transform -scale-x-100">
                   <FaPhone />
                 </span>
                 <a
-                  href="tel:+243000000000"
-                  className="hover:text-orange-500 transition-colors"
+                  href="tel:+243 89 446 1721"
+                  className="hover:text-red-500 transition-colors"
                 >
-                  +243 000 000 000
+                  +243 89 446 1721
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <span className="text-orange-500">
+                <span className="text-red-500">
                   <FaMapMarkerAlt />
                 </span>
                 <span>Kinshasa, RDC</span>
@@ -131,10 +130,10 @@ const Footer = () => {
             © {currentYear} Evan Lesnar. Tous droits réservés.
           </p>
           <div className="flex space-x-6 text-sm text-slate-500">
-            <a href="#" className="hover:text-orange-500 transition-colors">
+            <a href="#" className="hover:text-red-500 transition-colors">
               Politique de confidentialité
             </a>
-            <a href="#" className="hover:text-orange-500 transition-colors">
+            <a href="#" className="hover:text-red-500 transition-colors">
               Conditions d'utilisation
             </a>
           </div>
