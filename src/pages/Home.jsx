@@ -564,7 +564,7 @@ const Home = () => {
       </section>
 
       {/* VIDEO SECTION */}
-      <section className="section bg-gradient-to-br from-slate-900 to-slate-950">
+      <section className="section bg-gradient-to-br from-red-900/10 to-black">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="section-title">Extraits de Spectacles</h2>

@@ -33,9 +33,9 @@ const About = () => {
     },
     {
       year: "2024",
-      title: "Canal+ Comedy Club (avec Herman Amisi)",
+      title: "La radio du bonheur",
       image: canalImg,
-      details: "Participation remarquée au Canal+ Comedy Club aux côtés d’Herman Amisi.",
+      details: "Développé et affiné par une pratique approfondie.",
     },
     {
       year: "2024",
