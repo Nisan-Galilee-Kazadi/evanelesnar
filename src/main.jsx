@@ -1,8 +1,18 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { API_BASE } from "./utils/api";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+// Initialisation de AOS
+AOS.init({
+  duration: 1000,
+  once: true,
+  easing: 'ease-in-out',
+  offset: 100
+});
 
 // Affiche l'URL API utilisée par l'application (utile pour vérifier la config de déploiement)
 if (import.meta.env.PROD) {

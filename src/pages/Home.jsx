@@ -246,7 +246,7 @@ const Home = () => {
       )}
 
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden bg-black">
+      <section className="relative min-h-screen overflow-hidden bg-black" data-aos="fade-in">
         <div className="absolute inset-0 md:hidden">
           <img src={heroImage} alt="Hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40" />
@@ -264,12 +264,12 @@ const Home = () => {
 
             <div className="text-center md:text-left">
 
-              <h1 className="mt-8 text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+              <h1 className="mt-8 text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight" data-aos="fade-up" data-aos-delay="200">
                 <span className="text-white">Evane</span>{" "}
                 <span className="text-red-500">Lesnar</span>
               </h1>
 
-              <p className="mt-8 text-[16px] md:text-2xl text-slate-200 italic min-h-[3.5rem]">
+              <p className="mt-8 text-[16px] md:text-2xl text-slate-200 italic min-h-[3.5rem]" data-aos="fade-up" data-aos-delay="300">
                 {slogans[sloganIndex]}
               </p>
 {/* 
@@ -277,7 +277,7 @@ const Home = () => {
                 Préparez-vous à rire aux éclats !
               </p> */}
 
-              <div className="mt-12 flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4">
+              <div className="mt-12 flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4" data-aos="fade-up" data-aos-delay="400">
                 <Link
                   to="/events"
                   className="btn bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-4 w-full sm:w-auto inline-flex items-center justify-center gap-2"
@@ -293,7 +293,7 @@ const Home = () => {
                 </a>
               </div>
 
-              <div className="hidden md:grid mt-12 grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="hidden md:grid mt-12 grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="500">
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">2022</div>
                   <div className="text-slate-400 text-sm">Début</div>
@@ -348,7 +348,7 @@ const Home = () => {
       </section>
 
       {/* UPCOMING EVENTS */}
-      <section className="section bg-black">
+      <section className="section bg-black" data-aos="fade-up">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="section-title">Prochains Spectacles</h2>
@@ -379,12 +379,14 @@ const Home = () => {
                   <FaChevronRight />
                 </button>
 
-                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="zoom-in">
                   {visibleEvents.map((event, index) => (
                     <div
                       key={event._id}
                       className="event-card animate-slide-up"
                       style={{ animationDelay: `${index * 0.1}s` }}
+                      data-aos="fade-up"
+                      data-aos-delay={`${index * 100}`}
                     >
                       <div className="relative h-64 overflow-hidden">
                         <img
@@ -564,7 +566,7 @@ const Home = () => {
       </section>
 
       {/* VIDEO SECTION */}
-      <section className="section bg-gradient-to-br from-red-900/10 to-black">
+      <section className="section bg-gradient-to-br from-red-900/10 to-black" data-aos="fade-up">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="section-title">Extraits de Spectacles</h2>
@@ -573,11 +575,13 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto" data-aos="zoom-in">
             {homeMedia.map((m) => (
               <div
                 key={m._id}
                 className="card group"
+                data-aos="fade-up"
+                data-aos-delay="100"
               >
                 <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
                   <img
@@ -621,7 +625,7 @@ const Home = () => {
       </section>
 
       {/* CTA */}
-      <section className="section bg-gradient-to-r from-red-700 to-red-900">
+      <section className="section bg-gradient-to-r from-red-700 to-red-900" data-aos="fade-up">
         <div className="container-custom text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Prêt à vivre une soirée inoubliable ?
