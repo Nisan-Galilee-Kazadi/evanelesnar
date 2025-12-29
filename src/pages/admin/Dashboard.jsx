@@ -40,13 +40,24 @@ const Dashboard = () => {
         });
         const orders = await ordersRes.json();
 
-        const upcomingEvents = events.filter(
-          (e) => new Date(e.date) >= new Date()
+        // Filter active events (today or future)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const activeEvents = events.filter(
+          (e) => new Date(e.date) >= today
         );
-        const pendingOrders = orders.filter(
+        const activeEventIds = new Set(activeEvents.map(e => e._id));
+
+        // Filter orders related to active events
+        const activeOrders = orders.filter(
+          (o) => o.event && activeEventIds.has(o.event._id)
+        );
+
+        const pendingOrders = activeOrders.filter(
           (o) => o.paymentStatus === "pending"
         );
-        const validatedOrders = orders.filter(
+        const validatedOrders = activeOrders.filter(
           (o) => o.paymentStatus === "validated"
         );
         const totalRevenue = validatedOrders.reduce(
@@ -55,15 +66,15 @@ const Dashboard = () => {
         );
 
         setStats({
-          totalEvents: events.length,
-          upcomingEvents: upcomingEvents.length,
-          totalOrders: orders.length,
+          totalEvents: activeEvents.length,
+          upcomingEvents: activeEvents.length,
+          totalOrders: activeOrders.length,
           pendingOrders: pendingOrders.length,
           validatedOrders: validatedOrders.length,
           totalRevenue,
         });
 
-        setRecentOrders(orders.slice(0, 5));
+        setRecentOrders(activeOrders.slice(0, 5));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
@@ -142,9 +153,8 @@ const Dashboard = () => {
                   <div className="bg-black border border-slate-800 rounded-xl p-4 hover:border-slate-700 transition-all group cursor-pointer">
                     <div className="flex items-start justify-between mb-4">
                       <div
-                        className={`p-3 bg-gradient-to-br ${
-                          gradients[stat.color] || gradients.purple
-                        } rounded-lg`}
+                        className={`p-3 bg-gradient-to-br ${gradients[stat.color] || gradients.purple
+                          } rounded-lg`}
                       >
                         <Icon className="text-white" size={24} />
                       </div>
@@ -226,11 +236,10 @@ const Dashboard = () => {
                         {order.customerName}
                       </div>
                       <span
-                        className={`px-2 py-1 rounded text-xs font-semibold ${
-                          order.paymentStatus === "validated"
+                        className={`px-2 py-1 rounded text-xs font-semibold ${order.paymentStatus === "validated"
                             ? "bg-green-500/10 text-green-500"
                             : "bg-yellow-500/10 text-yellow-500"
-                        }`}
+                          }`}
                       >
                         {order.paymentStatus === "validated"
                           ? "Validé"

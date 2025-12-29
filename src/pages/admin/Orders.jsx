@@ -102,7 +102,17 @@ const Orders = () => {
     }
   };
 
-  const filteredOrders = orders.filter((order) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const activeEvents = events.filter((e) => new Date(e.date) >= today);
+  const activeEventIds = new Set(activeEvents.map((e) => e._id));
+
+  const activeOrders = orders.filter(
+    (order) => order.event && activeEventIds.has(order.event._id)
+  );
+
+  const filteredOrders = activeOrders.filter((order) => {
     const matchesSearch =
       order.customerName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customerEmail?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -127,10 +137,10 @@ const Orders = () => {
     return methods[method] || method;
   };
 
-  const pendingCount = orders.filter(
+  const pendingCount = activeOrders.filter(
     (o) => o.paymentStatus === "pending"
   ).length;
-  const validatedCount = orders.filter(
+  const validatedCount = activeOrders.filter(
     (o) => o.paymentStatus === "validated"
   ).length;
 
@@ -148,7 +158,7 @@ const Orders = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-black border border-slate-800 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">Total Commandes</div>
-            <div className="text-3xl font-bold text-white">{orders.length}</div>
+            <div className="text-3xl font-bold text-white">{activeOrders.length}</div>
           </div>
           <div className="bg-black border border-yellow-500/20 rounded-xl p-4">
             <div className="text-slate-400 text-sm mb-2">En Attente</div>
@@ -259,11 +269,10 @@ const Orders = () => {
                             Statut
                           </div>
                           <span
-                            className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                              order.paymentStatus === "validated"
-                                ? "bg-green-500/10 text-green-500"
-                                : "bg-yellow-500/10 text-yellow-500"
-                            }`}
+                            className={`px-3 py-1 rounded-full text-xs font-semibold ${order.paymentStatus === "validated"
+                              ? "bg-green-500/10 text-green-500"
+                              : "bg-yellow-500/10 text-yellow-500"
+                              }`}
                           >
                             {order.paymentStatus === "validated"
                               ? "VALIDÉ"
