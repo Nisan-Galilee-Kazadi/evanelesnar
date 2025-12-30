@@ -137,25 +137,63 @@ export const paymentMethods = [
     {
         id: "mpesa",
         name: "M-Pesa",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/320px-M-PESA_LOGO-01.svg.png",
-        instructions: "Composez *150# et suivez les instructions"
+        logo: "/logos/mpsa.webp",
+        ussd: "*1122#",
+        instructions: [
+            "Composez *1122#",
+            "Choisissez votre compte (CDF ou USD)",
+            "Sélectionnez 'Envoyer de l'argent'",
+            "Entrez le numéro : [NUMERO]",
+            "Entrez le montant : [MONTANT] CDF",
+            "Confirmez avec votre code PIN",
+            "Vous recevrez votre token par email dans les 12h"
+        ]
     },
     {
         id: "orange",
         name: "Orange Money",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/320px-Orange_logo.svg.png",
-        instructions: "Composez #150# et suivez les instructions"
+        logo: "/logos/orange.webp",
+        ussd: "*144#",
+        instructions: [
+            "Composez *144#",
+            "Choisissez votre compte (Franc ou Dollar)",
+            "Sélectionnez 'Je transfère l'argent' (option 1)",
+            "Choisissez 'Transfert National' (option 1)",
+            "Entrez le numéro : [NUMERO]",
+            "Entrez le montant : [MONTANT] CDF",
+            "Confirmez avec votre code secret",
+            "Vous recevrez votre token par email dans les 12h"
+        ]
     },
     {
         id: "airtel",
         name: "Airtel Money",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Airtel_logo.svg/320px-Airtel_logo.svg.png",
-        instructions: "Composez *501# et suivez les instructions"
+        logo: "/logos/airtel.webp",
+        ussd: "*501#",
+        instructions: [
+            "Composez *501#",
+            "Choisissez votre devise (1 pour USD ou 2 pour CDF)",
+            "Sélectionnez 'Envoi Argent' (option 1)",
+            "Choisissez 'Vers Airtel Money' (option 1)",
+            "Entrez le numéro : [NUMERO]",
+            "Entrez le montant : [MONTANT] CDF",
+            "Confirmez avec votre PIN",
+            "Vous recevrez votre token par email dans les 12h"
+        ]
     },
     {
         id: "africell",
         name: "Africell Money",
-        logo: "https://africell.cd/wp-content/uploads/2021/03/logo.png",
-        instructions: "Composez *555# et suivez les instructions"
+        logo: "/logos/afrimoney.webp",
+        ussd: "*1020#",
+        instructions: [
+            "Composez *1020#",
+            "Choisissez votre devise (USD ou CDF)",
+            "Sélectionnez 'Envoyer de l'argent'",
+            "Entrez le numéro : [NUMERO]",
+            "Entrez le montant : [MONTANT] CDF",
+            "Confirmez avec votre PIN",
+            "Vous recevrez votre token par email dans les 12h"
+        ]
     },
 ];

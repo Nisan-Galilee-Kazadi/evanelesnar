@@ -345,58 +345,50 @@ const EventDetail = () => {
             <div className="flex items-center justify-center mb-12">
               <div className="flex items-center space-x-4">
                 <div
-                  className={`flex items-center space-x-2 ${
-                    step >= 1 ? "text-red-500" : "text-slate-600"
-                  }`}
+                  className={`flex items-center space-x-2 ${step >= 1 ? "text-red-500" : "text-slate-600"
+                    }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                      step >= 1
-                        ? "bg-red-600 text-white"
-                        : "bg-slate-800 text-slate-600"
-                    }`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= 1
+                      ? "bg-red-600 text-white"
+                      : "bg-slate-800 text-slate-600"
+                      }`}
                   >
                     1
                   </div>
                   <span className="hidden sm:inline font-medium">Billets</span>
                 </div>
                 <div
-                  className={`w-16 h-0.5 ${
-                    step >= 2 ? "bg-red-600" : "bg-slate-800"
-                  }`}
+                  className={`w-16 h-0.5 ${step >= 2 ? "bg-red-600" : "bg-slate-800"
+                    }`}
                 ></div>
                 <div
-                  className={`flex items-center space-x-2 ${
-                    step >= 2 ? "text-red-500" : "text-slate-600"
-                  }`}
+                  className={`flex items-center space-x-2 ${step >= 2 ? "text-red-500" : "text-slate-600"
+                    }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                      step >= 2
-                        ? "bg-red-600 text-white"
-                        : "bg-slate-800 text-slate-600"
-                    }`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= 2
+                      ? "bg-red-600 text-white"
+                      : "bg-slate-800 text-slate-600"
+                      }`}
                   >
                     2
                   </div>
                   <span className="hidden sm:inline font-medium">Paiement</span>
                 </div>
                 <div
-                  className={`w-16 h-0.5 ${
-                    step >= 3 ? "bg-red-600" : "bg-slate-800"
-                  }`}
+                  className={`w-16 h-0.5 ${step >= 3 ? "bg-red-600" : "bg-slate-800"
+                    }`}
                 ></div>
                 <div
-                  className={`flex items-center space-x-2 ${
-                    step >= 3 ? "text-red-500" : "text-slate-600"
-                  }`}
+                  className={`flex items-center space-x-2 ${step >= 3 ? "text-red-500" : "text-slate-600"
+                    }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                      step >= 3
-                        ? "bg-red-600 text-white"
-                        : "bg-slate-800 text-slate-600"
-                    }`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= 3
+                      ? "bg-red-600 text-white"
+                      : "bg-slate-800 text-slate-600"
+                      }`}
                   >
                     3
                   </div>
@@ -485,11 +477,10 @@ const EventDetail = () => {
                   >
                     <div className="flex-1">
                       <h3
-                        className={`text-xl font-bold mb-2 flex items-center gap-2 ${
-                          ticket.type === "VIP"
-                            ? "text-gradient-gold"
-                            : "text-white"
-                        }`}
+                        className={`text-xl font-bold mb-2 flex items-center gap-2 ${ticket.type === "VIP"
+                          ? "text-gradient-gold"
+                          : "text-white"
+                          }`}
                       >
                         {ticket.type === "VIP" && (
                           <FaStar className="text-yellow-500" />
@@ -619,28 +610,28 @@ const EventDetail = () => {
                 </h3>
                 <div className="grid grid-cols-4 gap-2 md:gap-4">
                   {paymentMethods.map((method) => {
-                    const isRedBg =
-                      method.id === "mpesa" || method.id === "airtel";
+
                     return (
                       <div
                         key={method.id}
                         onClick={() => setSelectedPayment(method.id)}
-                        className={`payment-icon ${
-                          selectedPayment === method.id ? "active" : ""
-                        } ${isRedBg ? "!bg-red-600" : ""}`}
+                        className={`payment-icon relative rounded-2xl overflow-hidden cursor-pointer transition-all ${selectedPayment === method.id
+                          ? "ring-2 ring-red-500 scale-105"
+                          : "opacity-70 hover:opacity-100"
+                          } flex items-center justify-center mx-auto`}
                       >
                         <img
                           src={method.logo}
                           alt={method.name}
-                          className={`w-full h-full object-contain ${
-                            isRedBg ? "brightness-0 invert" : ""
-                          }`}
+                          className="w-full object-cover"
                         />
                       </div>
                     );
                   })}
                 </div>
               </div>
+
+
 
               {/* Summary */}
               <div className="card mb-6">
@@ -704,10 +695,15 @@ const EventDetail = () => {
                 <p className="text-xl text-white mb-4">
                   Pour finaliser votre achat, veuillez effectuer le paiement :
                 </p>
-                <div className="text-3xl font-bold text-red-500 mb-4 p-4 bg-black rounded-lg border border-red-500/30">
+                <div className="text-xl font-bold text-red-500 mb-4 p-6 bg-black rounded-lg border border-red-500/30 flex flex-col gap-3 text-left">
                   {
                     paymentMethods.find((m) => m.id === selectedPayment)
-                      ?.instructions
+                      ?.instructions.map((line, idx) => (
+                        <div key={idx} className="flex gap-3">
+                          <span className="text-red-600/50">{idx + 1}.</span>
+                          <span>{line.replace('[NUMERO]', ' [Numéro de l\'artiste]').replace('[MONTANT]', ` ${getTotalAmount().toLocaleString()}`)}</span>
+                        </div>
+                      ))
                   }
                 </div>
                 <p className="text-slate-300 leading-relaxed">
