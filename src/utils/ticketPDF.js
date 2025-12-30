@@ -22,15 +22,15 @@ export const generateTicketPDF = async (order, event) => {
     ticketContainer.innerHTML = `
         <div style="background: #000000; border-radius: 15px; overflow: hidden; border: 1px solid #dc2626;">
             <!-- Header -->
-            <div style="position: relative; height: 220px; overflow: hidden; background: #000;">
-                <img src="${event.image}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" />
+            <div style="position: relative; height: 220px; background: #000;">
+                <img src="${event.image}" crossOrigin="anonymous" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" />
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 1) 20%, transparent); padding: 25px;">
                     <h1 style="color: #fff; font-size: 24px; margin: 0; font-weight: bold;">${event.title}</h1>
                 </div>
             </div>
             
             <!-- Ticket Body -->
-            <div style="padding: 30px; background: #000000;">
+            <div style="padding: 30px; background: #000000; height: auto;">
                 <!-- Event Details -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                     <div>
@@ -132,13 +132,13 @@ export const generateTicketPDF = async (order, event) => {
 
     qrContainer.appendChild(qrCanvas);
 
-    // Wait for images to load
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Wait for images and QR code to be fully rendered
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Convert to canvas
     const canvas = await html2canvas(ticketContainer, {
         scale: 2,
-        backgroundColor: '#0f172a',
+        backgroundColor: '#000000',
         logging: false,
         useCORS: true
     });
