@@ -324,7 +324,7 @@ const Home = () => {
                   <div className="text-zinc-400 text-sm">Début</div>
                 </div>
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
-                  <div className="text-3xl font-bold text-white">~4 ans</div>
+                  <div className="text-3xl font-bold text-white">+3 ans</div>
                   <div className="text-zinc-400 text-sm">Expérience</div>
                 </div>
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
