@@ -19,6 +19,7 @@ import {
 
 const Home = () => {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videoModal, setVideoModal] = useState({
     isOpen: false,
@@ -40,12 +41,15 @@ const Home = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
+      setLoading(true);
       try {
         const response = await fetch(API("/api/events?upcoming=true"));
         const data = await response.json();
-        setEvents(data.slice(0, 6));
+        setEvents(Array.isArray(data) ? data.slice(0, 6) : []);
       } catch (error) {
         console.error("Error fetching events:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -378,7 +382,12 @@ const Home = () => {
             </p>
           </div>
 
-          {events.length > 0 ? (
+          {loading ? (
+            <div className="text-center py-20">
+              <div className="inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+              <p className="text-slate-400 text-lg">Chargement des spectacles...</p>
+            </div>
+          ) : events.length > 0 ? (
             <>
               <div
                 className="relative"
@@ -386,25 +395,29 @@ const Home = () => {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
               >
-                <button
-                  onClick={prevSlide}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all"
-                >
-                  <FaChevronLeft />
-                </button>
+                {events.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevSlide}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all"
+                    >
+                      <FaChevronLeft />
+                    </button>
 
-                <button
-                  onClick={nextSlide}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all"
-                >
-                  <FaChevronRight />
-                </button>
+                    <button
+                      onClick={nextSlide}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all"
+                    >
+                      <FaChevronRight />
+                    </button>
+                  </>
+                )}
 
-                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-1" data-aos="zoom-in">
-                  {visibleEvents.map((event, index) => (
+                <div className={`grid grid-cols-1 ${events.length === 1 ? 'md:grid-cols-1' : events.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-3 px-1`} data-aos="zoom-in">
+                  {(events.length <= 3 ? events : visibleEvents).map((event, index) => (
                     <div
                       key={event._id}
-                      className="event-card animate-slide-up border-2 border-red-800/50 rounded-lg overflow-hidden hover:border-red-600 transition-colors duration-300 m-1"
+                      className={`event-card animate-slide-up border-2 border-red-800/50 rounded-lg overflow-hidden hover:border-red-600 transition-colors duration-300 m-1 ${events.length === 1 ? 'max-w-2xl mx-auto' : ''}`}
                       style={{ animationDelay: `${index * 0.1}s` }}
                       data-aos="fade-up"
                       data-aos-delay={`${index * 100}`}
