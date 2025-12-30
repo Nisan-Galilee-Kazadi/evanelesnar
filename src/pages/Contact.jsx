@@ -94,7 +94,7 @@ const Contact = () => {
     const socialLinks = [
         { name: 'Facebook', icon: <FaFacebookF />, url: 'https://www.facebook.com/people/Evane-Lesnar/100081707015576/#', color: 'hover:bg-red-600' },
         { name: 'Instagram', icon: <FaInstagram />, url: 'https://www.instagram.com/evanelesnar/?__d=dist', color: 'hover:bg-red-700' },
-        { name: 'TikTok', icon: <FaTiktok />, url: 'https://www.tiktok.com/@evanelesnar/photo/7579940946217880844', color: 'hover:bg-slate-800' },
+        { name: 'TikTok', icon: <FaTiktok />, url: 'https://www.tiktok.com/@evanelesnar/photo/7579940946217880844', color: 'hover:bg-zinc-800' },
     ];
 
     return (
@@ -103,7 +103,7 @@ const Contact = () => {
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h1 className="section-title mb-4">Contactez-moi</h1>
-                    <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
                         Une question ? Une demande de booking ? N'hésitez pas à me contacter !
                     </p>
                 </div>
@@ -117,7 +117,7 @@ const Contact = () => {
                             <div className="text-center py-12 animate-slide-up">
                                 <div className="text-6xl mb-4 text-green-500 flex justify-center"><FaCheckCircle /></div>
                                 <h3 className="text-2xl font-bold text-white mb-2">Message envoyé !</h3>
-                                <p className="text-slate-400">Je vous répondrai dans les plus brefs délais.</p>
+                                <p className="text-zinc-400">Je vous répondrai dans les plus brefs délais.</p>
                             </div>
                         ) : (
                             <>
@@ -128,45 +128,45 @@ const Contact = () => {
                                 )}
                                 <form onSubmit={handleSubmit} className="space-y-4">
                                     <div>
-                                        <label className="block text-slate-400 mb-2 text-sm">Nom complet *</label>
+                                        <label className="block text-zinc-400 mb-2 text-sm">Nom complet *</label>
                                         <input
                                             type="text"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
                                             placeholder="Votre nom"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-slate-400 mb-2 text-sm">Email *</label>
+                                        <label className="block text-zinc-400 mb-2 text-sm">Email *</label>
                                         <input
                                             type="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
                                             placeholder="votre@email.com"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-slate-400 mb-2 text-sm">Téléphone</label>
+                                        <label className="block text-zinc-400 mb-2 text-sm">Téléphone</label>
                                         <input
                                             type="tel"
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
                                             placeholder="+243 000 000 000"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-slate-400 mb-2 text-sm">Sujet *</label>
+                                        <label className="block text-zinc-400 mb-2 text-sm">Sujet *</label>
                                         <select
                                             name="subject"
                                             value={formData.subject}
@@ -184,14 +184,14 @@ const Contact = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-slate-400 mb-2 text-sm">Message *</label>
+                                        <label className="block text-zinc-400 mb-2 text-sm">Message *</label>
                                         <textarea
                                             name="message"
                                             value={formData.message}
                                             onChange={handleChange}
                                             required
                                             rows="5"
-                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
                                             placeholder="Votre message..."
                                         ></textarea>
                                     </div>
@@ -220,7 +220,7 @@ const Contact = () => {
                                 >
                                     <div className="text-4xl mb-3 text-red-500 ">{info.icon}</div>
                                     <h3 className="text-white font-bold mb-1">{info.title}</h3>
-                                    <p className="text-slate-400 text-sm group-hover:text-red-400 transition-colors">
+                                    <p className="text-zinc-400 text-sm group-hover:text-red-400 transition-colors">
                                         {info.value}
                                     </p>
                                 </a>
@@ -249,7 +249,7 @@ const Contact = () => {
                         {/* Business Hours */}
                         <div className="card-glass">
                             <h3 className="text-xl font-bold text-white mb-4">Disponibilité</h3>
-                            <div className="space-y-2 text-slate-400">
+                            <div className="space-y-2 text-zinc-400">
                                 <div className="flex justify-between">
                                     <span>Lundi - Vendredi</span>
                                     <span className="text-white">9h - 18h</span>
@@ -273,7 +273,7 @@ const Contact = () => {
                             <p className="text-white/90 mb-4">
                                 Pour les demandes de spectacles privés ou événements d'entreprise
                             </p>
-                            <a href="mailto:evanebukasa@gmail.com" className="btn bg-white text-red-700 hover:bg-slate-100 w-full">
+                            <a href="mailto:evanebukasa@gmail.com" className="btn bg-white text-red-700 hover:bg-zinc-100 w-full">
                                 Demande de booking
                             </a>
                         </div>

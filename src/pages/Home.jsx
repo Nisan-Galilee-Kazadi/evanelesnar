@@ -231,14 +231,14 @@ const Home = () => {
                   <h3 className="text-2xl font-bold text-white mb-2">
                     {selectedMedia.title || (selectedMedia.type === "video" ? "Vidéo" : "Photo")}
                   </h3>
-                  <p className="text-slate-300 mb-4 whitespace-pre-line">
+                  <p className="text-zinc-300 mb-4 whitespace-pre-line">
                     {selectedMedia.description || ""}
                   </p>
 
                   {selectedMedia.sourceEvent && (
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
                       <div className="text-white font-semibold mb-2">Événement lié</div>
-                      <div className="text-slate-300 text-sm space-y-2">
+                      <div className="text-zinc-300 text-sm space-y-2">
                         <div className="flex items-center gap-2">
                           <FaCalendarAlt className="text-red-500" />
                           <span>
@@ -294,11 +294,11 @@ const Home = () => {
                 <span className="text-red-500">Lesnar</span>
               </h1>
 
-              <p className="mt-8 text-[16px] md:text-2xl text-slate-200 italic min-h-[3.5rem]" data-aos="fade-up" data-aos-delay="300">
+              <p className="mt-8 text-[16px] md:text-2xl text-zinc-200 italic min-h-[3.5rem]" data-aos="fade-up" data-aos-delay="300">
                 {slogans[sloganIndex]}
               </p>
               {/* 
-              <p className="mt-6 text-slate-300 max-w-2xl md:max-w-none">
+              <p className="mt-6 text-zinc-300 max-w-2xl md:max-w-none">
                 Préparez-vous à rire aux éclats !
               </p> */}
 
@@ -312,7 +312,7 @@ const Home = () => {
                 </Link>
                 <a
                   href="/about"
-                  className="btn bg-transparent border border-slate-700 text-white hover:border-red-500 text-lg px-8 py-4 w-full sm:w-auto"
+                  className="btn bg-transparent border border-zinc-700 text-white hover:border-red-500 text-lg px-8 py-4 w-full sm:w-auto"
                 >
                   En savoir plus
                 </a>
@@ -321,19 +321,19 @@ const Home = () => {
               <div className="hidden md:grid mt-12 grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="500">
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">2022</div>
-                  <div className="text-slate-400 text-sm">Début</div>
+                  <div className="text-zinc-400 text-sm">Début</div>
                 </div>
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">~4 ans</div>
-                  <div className="text-slate-400 text-sm">Expérience</div>
+                  <div className="text-zinc-400 text-sm">Expérience</div>
                 </div>
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">2024</div>
-                  <div className="text-slate-400 text-sm">Prix Prexelart</div>
+                  <div className="text-zinc-400 text-sm">Prix Prexelart</div>
                 </div>
                 <div className="bg-black/60 border border-gray-800 rounded-2xl p-4 text-center">
                   <div className="text-3xl font-bold text-white">Rodage</div>
-                  <div className="text-slate-400 text-sm">1er spectacle</div>
+                  <div className="text-zinc-400 text-sm">1er spectacle</div>
                 </div>
               </div>
             </div>
@@ -377,7 +377,7 @@ const Home = () => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="section-title">Prochains Spectacles</h2>
-            <p className="text-slate-400 text-lg mt-4">
+            <p className="text-zinc-400 text-lg mt-4">
               Ne manquez pas mes prochaines dates !
             </p>
           </div>
@@ -385,7 +385,7 @@ const Home = () => {
           {loading ? (
             <div className="text-center py-20">
               <div className="inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-              <p className="text-slate-400 text-lg">Chargement des spectacles...</p>
+              <p className="text-zinc-400 text-lg">Chargement des spectacles...</p>
             </div>
           ) : events.length > 0 ? (
             <>
@@ -428,7 +428,7 @@ const Home = () => {
                           alt={event.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/50 to-transparent"></div>
 
                         {event.status === "selling-fast" && (
                           <div className="absolute top-4 right-4 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse flex items-center gap-1">
@@ -442,7 +442,7 @@ const Home = () => {
                           {event.title}
                         </h3>
 
-                        <div className="space-y-2 mb-4 text-slate-400">
+                        <div className="space-y-2 mb-4 text-zinc-400">
                           <div className="flex items-center space-x-2">
                             <span className="text-red-500">
                               <FaCalendarAlt />
@@ -475,13 +475,13 @@ const Home = () => {
                           </div>
                         </div>
 
-                        <p className="text-slate-400 mb-6 line-clamp-2">
+                        <p className="text-zinc-400 mb-6 line-clamp-2">
                           {event.description}
                         </p>
 
                         <div className="flex items-center justify-between mb-4">
                           <div>
-                            <span className="text-sm text-slate-500">
+                            <span className="text-sm text-zinc-500">
                               À partir de
                             </span>
                             <div className="text-2xl font-bold text-gradient">
@@ -511,7 +511,7 @@ const Home = () => {
                           alt={event.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/50 to-transparent"></div>
 
                         {event.status === "selling-fast" && (
                           <div className="absolute top-4 right-4 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse flex items-center gap-1">
@@ -525,7 +525,7 @@ const Home = () => {
                           {event.title}
                         </h3>
 
-                        <div className="space-y-2 mb-4 text-slate-400">
+                        <div className="space-y-2 mb-4 text-zinc-400">
                           <div className="flex items-center space-x-2">
                             <span className="text-red-500">
                               <FaCalendarAlt />
@@ -558,13 +558,13 @@ const Home = () => {
                           </div>
                         </div>
 
-                        <p className="text-slate-400 mb-6 line-clamp-2">
+                        <p className="text-zinc-400 mb-6 line-clamp-2">
                           {event.description}
                         </p>
 
                         <div className="flex items-center justify-between mb-4">
                           <div>
-                            <span className="text-sm text-slate-500">
+                            <span className="text-sm text-zinc-500">
                               À partir de
                             </span>
                             <div className="text-2xl font-bold text-gradient">
@@ -592,7 +592,7 @@ const Home = () => {
               </div>
             </>
           ) : (
-            <div className="text-center text-slate-400 py-12">
+            <div className="text-center text-zinc-400 py-12">
               Chargement des événements...
             </div>
           )}

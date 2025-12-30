@@ -68,7 +68,7 @@ const About = () => {
           onClick={closeParcoursDetails}
         >
           <div
-            className="relative w-full max-w-4xl bg-black border border-slate-800 rounded-2xl overflow-hidden"
+            className="relative w-full max-w-4xl bg-black border border-zinc-800 rounded-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -93,7 +93,7 @@ const About = () => {
                 <h3 className="text-2xl font-bold text-white mb-3">
                   {selectedParcours.title}
                 </h3>
-                <p className="text-slate-300 whitespace-pre-line">{selectedParcours.details}</p>
+                <p className="text-zinc-300 whitespace-pre-line">{selectedParcours.details}</p>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@ const About = () => {
                 "Son univers artistique repose sur l’autodérision, une arme comique qu’il manie avec justesse pour transformer sa réalité en éclats de rire. Son talent a été officiellement couronné en 2024 par le prix du Meilleur Jeune Humoriste au Prexelart (Prix de l’Excellence Artistique).",
                 "En 2025, avec le rodage de son premier spectacle, Evane Lesnar affirme son identité et son ambition : conquérir les grandes scènes internationales avec un humour authentique, moderne et résolument proche de son public.",
               ].map((paragraph, idx) => (
-                <p key={idx} className="text-slate-300 text-[16px] leading-relaxed mb-4">
+                <p key={idx} className="text-zinc-300 text-[16px] leading-relaxed mb-4">
                   {paragraph}
                 </p>
               ))}
@@ -138,34 +138,34 @@ const About = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          <div className="bg-black border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-zinc-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">+3 ans</div>
-            <div className="text-slate-400 mt-2">Années d’expérience (depuis 2022)</div>
+            <div className="text-zinc-400 mt-2">Années d’expérience (depuis 2022)</div>
           </div>
-          <div className="bg-black border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-zinc-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">2024</div>
-            <div className="text-slate-400 mt-2">Meilleur Jeune Humoriste (Prexelart)</div>
+            <div className="text-zinc-400 mt-2">Meilleur Jeune Humoriste (Prexelart)</div>
           </div>
-          <div className="bg-black border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-zinc-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">Rodage</div>
-            <div className="text-slate-400 mt-2">13 sept 2025 — Silas Bar, Kintambo</div>
+            <div className="text-zinc-400 mt-2">13 sept 2025 — Silas Bar, Kintambo</div>
           </div>
-          <div className="bg-black border border-slate-800 rounded-2xl p-6">
+          <div className="bg-black border border-zinc-800 rounded-2xl p-6">
             <div className="text-red-500 font-bold text-3xl">Réseaux</div>
-            <div className="text-slate-400 mt-2">TikTok: 1388 • Facebook: 606 • Instagram: 273</div>
+            <div className="text-zinc-400 mt-2">TikTok: 1388 • Facebook: 606 • Instagram: 273</div>
           </div>
         </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="section-title">Parcours</h2>
-            <p className="text-slate-400 text-lg mt-4">
+            <p className="text-zinc-400 text-lg mt-4">
               Formation, scènes marquantes, collaborations, ambition.
             </p>
           </div>
 
           <div className="relative">
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-800" />
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-zinc-800" />
             <div className="space-y-8">
               {parcours.map((step, idx) => {
                 const isLeft = idx % 2 === 0;
@@ -175,23 +175,23 @@ const About = () => {
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
                   >
                     <div className={`${isLeft ? "md:pr-12" : "md:pl-12 md:col-start-2"}`}>
-                      <div className="bg-black border border-slate-800 rounded-2xl overflow-hidden">
+                      <div className="bg-black border border-zinc-800 rounded-2xl overflow-hidden">
                         <img src={step.image} alt={step.title} className="w-full h-56 object-cover" />
                       </div>
                     </div>
 
                     <div className={`${isLeft ? "md:pl-12" : "md:pr-12 md:row-start-1"}`}>
-                      <div className="bg-red-900/20 border border-slate-800 rounded-2xl p-6">
+                      <div className="bg-red-900/20 border border-zinc-800 rounded-2xl p-6">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="w-3 h-3 rounded-full bg-red-500" />
                           <div className="text-red-400 font-semibold">{step.year}</div>
                         </div>
                         <h3 className="text-white text-xl font-bold mb-2">{step.title}</h3>
-                        <p className="text-slate-400 line-clamp-2">{step.details}</p>
+                        <p className="text-zinc-400 line-clamp-2">{step.details}</p>
                         <div className="mt-4">
                           <button
                             onClick={() => setSelectedParcours(step)}
-                            className="px-4 py-2 bg-black border border-slate-800 text-white rounded-lg hover:border-red-500 transition-colors"
+                            className="px-4 py-2 bg-black border border-zinc-800 text-white rounded-lg hover:border-red-500 transition-colors"
                           >
                             Voir détails
                           </button>
@@ -208,7 +208,7 @@ const About = () => {
         <div className="mt-20 text-center">
           <div className="card-glass max-w-2xl mx-auto">
             <h3 className="text-3xl font-bold text-white mb-4">Envie de rire ?</h3>
-            <p className="text-slate-400 mb-6">
+            <p className="text-zinc-400 mb-6">
               Découvrez mes prochains spectacles et réservez vos places dès maintenant.
             </p>
             <a

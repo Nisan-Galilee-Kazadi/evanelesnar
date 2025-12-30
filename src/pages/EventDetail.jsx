@@ -75,7 +75,7 @@ const EventDetail = () => {
     return (
       <div className="min-h-screen pt-32 flex items-center justify-center">
         <div className="text-center">
-          <div className="text-6xl mb-4 text-slate-600 flex justify-center">
+          <div className="text-6xl mb-4 text-zinc-600 flex justify-center">
             <FaRegSadTear />
           </div>
           <h2 className="text-3xl font-bold text-white mb-4">
@@ -289,7 +289,7 @@ const EventDetail = () => {
                       day: "numeric",
                     })}
                   </div>
-                  <div className="text-slate-400 text-sm">
+                  <div className="text-zinc-400 text-sm">
                     Date du spectacle
                   </div>
                 </div>
@@ -301,7 +301,7 @@ const EventDetail = () => {
                 </span>
                 <div>
                   <div className="text-white font-semibold">{event.time}</div>
-                  <div className="text-slate-400 text-sm">Heure de début</div>
+                  <div className="text-zinc-400 text-sm">Heure de début</div>
                 </div>
               </div>
 
@@ -311,12 +311,12 @@ const EventDetail = () => {
                 </span>
                 <div>
                   <div className="text-white font-semibold">{event.venue}</div>
-                  <div className="text-slate-400 text-sm">{event.city}</div>
+                  <div className="text-zinc-400 text-sm">{event.city}</div>
                 </div>
               </div>
             </div>
 
-            <p className="text-slate-300 text-lg leading-relaxed mb-8">
+            <p className="text-zinc-300 text-lg leading-relaxed mb-8">
               {event.description}
             </p>
 
@@ -326,13 +326,13 @@ const EventDetail = () => {
                 <div className="text-3xl font-bold text-gradient mb-1">
                   {event.tickets.reduce((sum, t) => sum + t.available, 0)}
                 </div>
-                <div className="text-slate-400 text-sm">Places disponibles</div>
+                <div className="text-zinc-400 text-sm">Places disponibles</div>
               </div>
               <div className="card text-center">
                 <div className="text-3xl font-bold text-gradient mb-1">
                   {event.tickets[0].price.toLocaleString()}
                 </div>
-                <div className="text-slate-400 text-sm">À partir de (CDF)</div>
+                <div className="text-zinc-400 text-sm">À partir de (CDF)</div>
               </div>
             </div>
           </div>
@@ -345,13 +345,13 @@ const EventDetail = () => {
             <div className="flex items-center justify-center mb-12">
               <div className="flex items-center space-x-4">
                 <div
-                  className={`flex items-center space-x-2 ${step >= 1 ? "text-red-500" : "text-slate-600"
+                  className={`flex items-center space-x-2 ${step >= 1 ? "text-red-500" : "text-zinc-600"
                     }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= 1
                       ? "bg-red-600 text-white"
-                      : "bg-slate-800 text-slate-600"
+                      : "bg-zinc-800 text-zinc-600"
                       }`}
                   >
                     1
@@ -359,17 +359,17 @@ const EventDetail = () => {
                   <span className="hidden sm:inline font-medium">Billets</span>
                 </div>
                 <div
-                  className={`w-16 h-0.5 ${step >= 2 ? "bg-red-600" : "bg-slate-800"
+                  className={`w-16 h-0.5 ${step >= 2 ? "bg-red-600" : "bg-zinc-800"
                     }`}
                 ></div>
                 <div
-                  className={`flex items-center space-x-2 ${step >= 2 ? "text-red-500" : "text-slate-600"
+                  className={`flex items-center space-x-2 ${step >= 2 ? "text-red-500" : "text-zinc-600"
                     }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= 2
                       ? "bg-red-600 text-white"
-                      : "bg-slate-800 text-slate-600"
+                      : "bg-zinc-800 text-zinc-600"
                       }`}
                   >
                     2
@@ -377,17 +377,17 @@ const EventDetail = () => {
                   <span className="hidden sm:inline font-medium">Paiement</span>
                 </div>
                 <div
-                  className={`w-16 h-0.5 ${step >= 3 ? "bg-red-600" : "bg-slate-800"
+                  className={`w-16 h-0.5 ${step >= 3 ? "bg-red-600" : "bg-zinc-800"
                     }`}
                 ></div>
                 <div
-                  className={`flex items-center space-x-2 ${step >= 3 ? "text-red-500" : "text-slate-600"
+                  className={`flex items-center space-x-2 ${step >= 3 ? "text-red-500" : "text-zinc-600"
                     }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= 3
                       ? "bg-red-600 text-white"
-                      : "bg-slate-800 text-slate-600"
+                      : "bg-zinc-800 text-zinc-600"
                       }`}
                   >
                     3
@@ -410,11 +410,11 @@ const EventDetail = () => {
                 Validez votre Token
               </h2>
 
-              <div className="bg-slate-800/50 rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-slate-700">
+              <div className="bg-zinc-800/50 rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-zinc-700">
                 <p className="text-lg text-white mb-4">
                   {pendingOrder ? "Vous avez une commande en attente pour cet événement." : "Récupérez votre billet à l'aide de votre token."}
                 </p>
-                <p className="text-slate-300 mb-6">
+                <p className="text-zinc-300 mb-6">
                   Entrez le token que vous avez reçu après validation du
                   paiement pour télécharger votre billet.
                 </p>
@@ -427,7 +427,7 @@ const EventDetail = () => {
                     onChange={(e) =>
                       setTokenInput(e.target.value.toUpperCase())
                     }
-                    className="w-full px-6 py-4 bg-black border border-slate-700 rounded-lg text-white text-center text-xl font-mono placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                    className="w-full px-6 py-4 bg-black border border-zinc-700 rounded-lg text-white text-center text-xl font-mono placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
                   />
                 </div>
 
@@ -455,7 +455,7 @@ const EventDetail = () => {
                   setPendingOrder(null);
                   setStep(1);
                 }}
-                className="text-slate-400 hover:text-white transition-colors underline"
+                className="text-zinc-400 hover:text-white transition-colors underline"
               >
                 Faire une nouvelle réservation
               </button>
@@ -490,7 +490,7 @@ const EventDetail = () => {
                       <div className="text-2xl font-bold text-gradient mb-1">
                         {ticket.price.toLocaleString()} {ticket.currency}
                       </div>
-                      <div className="text-sm text-slate-400">
+                      <div className="text-sm text-zinc-400">
                         {ticket.available} places disponibles
                       </div>
                     </div>
@@ -503,7 +503,7 @@ const EventDetail = () => {
                             (selectedTickets[ticket.type] || 0) - 1
                           )
                         }
-                        className="w-10 h-10 bg-slate-800 hover:bg-red-600 rounded-lg font-bold transition-colors"
+                        className="w-10 h-10 bg-zinc-800 hover:bg-red-600 rounded-lg font-bold transition-colors"
                         disabled={!selectedTickets[ticket.type]}
                       >
                         -
@@ -518,7 +518,7 @@ const EventDetail = () => {
                             (selectedTickets[ticket.type] || 0) + 1
                           )
                         }
-                        className="w-10 h-10 bg-slate-800 hover:bg-red-600 rounded-lg font-bold transition-colors"
+                        className="w-10 h-10 bg-zinc-800 hover:bg-red-600 rounded-lg font-bold transition-colors"
                         disabled={
                           (selectedTickets[ticket.type] || 0) >=
                           ticket.available
@@ -532,14 +532,14 @@ const EventDetail = () => {
               </div>
 
               {/* Total */}
-              <div className="border-t border-slate-700 pt-6 mb-6">
+              <div className="border-t border-zinc-700 pt-6 mb-6">
                 <div className="flex items-center justify-between text-2xl font-bold mb-2">
                   <span className="text-white">Total</span>
                   <span className="text-gradient">
                     {getTotalAmount().toLocaleString()} CDF
                   </span>
                 </div>
-                <div className="text-slate-400 text-right">
+                <div className="text-zinc-400 text-right">
                   {getTotalTickets()} billet{getTotalTickets() > 1 ? "s" : ""}
                 </div>
               </div>
@@ -554,7 +554,7 @@ const EventDetail = () => {
               <div className="text-center mt-4">
                 <button
                   onClick={() => setStep(4)}
-                  className="text-slate-400 hover:text-red-500 transition-colors text-sm underline"
+                  className="text-zinc-400 hover:text-red-500 transition-colors text-sm underline"
                 >
                   Déjà payé ? Valider mon token
                 </button>
@@ -582,7 +582,7 @@ const EventDetail = () => {
                     onChange={(e) =>
                       setCustomerInfo({ ...customerInfo, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-black border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-4 py-3 bg-black border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500"
                   />
                   <input
                     type="email"
@@ -594,7 +594,7 @@ const EventDetail = () => {
                         email: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 bg-black border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-4 py-3 bg-black border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500"
                   />
                   <input
                     type="tel"
@@ -606,7 +606,7 @@ const EventDetail = () => {
                         phone: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 bg-black border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-4 py-3 bg-black border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500"
                   />
                 </div>
               </div>
@@ -650,7 +650,7 @@ const EventDetail = () => {
                   return (
                     <div
                       key={type}
-                      className="flex justify-between text-slate-400 mb-2"
+                      className="flex justify-between text-zinc-400 mb-2"
                     >
                       <span>
                         {qty}x {type}
@@ -659,7 +659,7 @@ const EventDetail = () => {
                     </div>
                   );
                 })}
-                <div className="border-t border-slate-700 mt-4 pt-4 flex justify-between text-xl font-bold">
+                <div className="border-t border-zinc-700 mt-4 pt-4 flex justify-between text-xl font-bold">
                   <span className="text-white">Total</span>
                   <span className="text-gradient">
                     {getTotalAmount().toLocaleString()} CDF
@@ -689,7 +689,7 @@ const EventDetail = () => {
               <div className="text-center mt-4">
                 <button
                   onClick={() => setStep(4)}
-                  className="text-slate-400 hover:text-red-500 transition-colors text-sm underline"
+                  className="text-zinc-400 hover:text-red-500 transition-colors text-sm underline"
                 >
                   J'ai déjà un token pour cette commande
                 </button>
@@ -707,7 +707,7 @@ const EventDetail = () => {
                 Demande enregistrée !
               </h2>
 
-              <div className="bg-slate-800/50 rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-slate-700">
+              <div className="bg-zinc-800/50 rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-zinc-700">
                 <p className="text-xl text-white mb-4">
                   Pour finaliser votre achat, veuillez effectuer le paiement :
                 </p>
@@ -722,12 +722,12 @@ const EventDetail = () => {
                       ))
                   }
                 </div>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-zinc-300 leading-relaxed">
                   Une fois le paiement effectué, vous recevrez votre{" "}
                   <span className="text-white font-bold">token unique</span>{" "}
                   dans les 12h qui suivent pour télécharger votre billet.
                 </p>
-                <p className="text-slate-400 text-sm mt-4">
+                <p className="text-zinc-400 text-sm mt-4">
                   💡 Revenez sur cette page avec votre token pour télécharger
                   votre billet !
                 </p>

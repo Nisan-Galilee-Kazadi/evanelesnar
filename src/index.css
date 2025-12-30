@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-black text-slate-100 antialiased;
+    @apply bg-black text-zinc-100 antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
@@ -40,12 +40,12 @@
   }
 
   .btn-vip {
-    @apply bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-900 hover:shadow-yellow-400/50;
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-600 text-zinc-900 hover:shadow-yellow-400/50;
   }
 
   /* Cards */
   .card {
-    @apply bg-black/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 transition-all duration-300 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10;
+    @apply bg-black/50 backdrop-blur-sm border border-zinc-800 rounded-xl p-6 transition-all duration-300 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10;
   }
 
   .card-glass {
@@ -54,7 +54,7 @@
 
   /* Event Card */
   .event-card {
-    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-red-500 transition-all duration-500;
+    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 hover:border-red-500 transition-all duration-500;
   }
 
   /* Mobile Money Icons */
@@ -68,7 +68,7 @@
 
   /* Ticket */
   .ticket {
-    @apply relative bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-dashed border-red-500 rounded-lg p-6 overflow-hidden;
+    @apply relative bg-gradient-to-br from-zinc-800 to-zinc-900 border-2 border-dashed border-red-500 rounded-lg p-6 overflow-hidden;
   }
 
   /* Animations */
@@ -100,12 +100,12 @@
 
   /* Navbar */
   .navbar {
-    @apply fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-slate-800;
+    @apply fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-zinc-800;
   }
 
   /* Hero gradient overlay */
   .hero-overlay {
-    @apply absolute inset-0 bg-gradient-to-br from-slate-950/95 via-red-950/50 to-slate-950/95;
+    @apply absolute inset-0 bg-gradient-to-br from-zinc-950/95 via-red-950/50 to-zinc-950/95;
   }
 }
 
@@ -128,11 +128,11 @@
 
   0%,
   100% {
-    transform: translateY(0px);
+    transform: tranzincY(0px);
   }
 
   50% {
-    transform: translateY(-20px);
+    transform: tranzincY(-20px);
   }
 }
 
@@ -149,12 +149,12 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: tranzincY(30px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: tranzincY(0);
   }
 }
 
