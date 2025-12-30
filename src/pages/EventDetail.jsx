@@ -400,8 +400,8 @@ const EventDetail = () => {
             </div>
           )}
 
-          {/* Step 4: Token Validation (if pending order exists) */}
-          {step === 4 && pendingOrder && (
+          {/* Step 4: Token Validation */}
+          {step === 4 && (
             <div className="card-glass animate-slide-up text-center">
               <div className="text-6xl mb-6 text-red-500 flex justify-center">
                 <FaTicketAlt />
@@ -412,7 +412,7 @@ const EventDetail = () => {
 
               <div className="bg-slate-800/50 rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-slate-700">
                 <p className="text-lg text-white mb-4">
-                  Vous avez une commande en attente pour cet événement.
+                  {pendingOrder ? "Vous avez une commande en attente pour cet événement." : "Récupérez votre billet à l'aide de votre token."}
                 </p>
                 <p className="text-slate-300 mb-6">
                   Entrez le token que vous avez reçu après validation du
@@ -551,6 +551,14 @@ const EventDetail = () => {
               >
                 Continuer vers le paiement
               </button>
+              <div className="text-center mt-4">
+                <button
+                  onClick={() => setStep(4)}
+                  className="text-slate-400 hover:text-red-500 transition-colors text-sm underline"
+                >
+                  Déjà payé ? Valider mon token
+                </button>
+              </div>
             </div>
           )}
 
@@ -676,6 +684,14 @@ const EventDetail = () => {
                   className="btn btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <FaCheck /> Valider
+                </button>
+              </div>
+              <div className="text-center mt-4">
+                <button
+                  onClick={() => setStep(4)}
+                  className="text-slate-400 hover:text-red-500 transition-colors text-sm underline"
+                >
+                  J'ai déjà un token pour cette commande
                 </button>
               </div>
             </div>

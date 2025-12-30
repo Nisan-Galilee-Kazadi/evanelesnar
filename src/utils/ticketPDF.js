@@ -20,10 +20,10 @@ export const generateTicketPDF = async (order, event) => {
     };
 
     ticketContainer.innerHTML = `
-        <div style="background: #000000; border-radius: 15px; overflow: hidden; border: 1px solid #dc2626;">
+        <div id="ticket-capture" style="background: #000000; border-radius: 15px; border: 1px solid #dc2626; width: 500px;">
             <!-- Header -->
-            <div style="position: relative; height: 220px; background: #000;">
-                <img src="${event.image}" crossOrigin="anonymous" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" />
+            <div style="position: relative; height: 250px; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 15px 15px 0 0;">
+                <img src="${event.image}" crossOrigin="anonymous" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6; display: block;" />
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 1) 20%, transparent); padding: 25px;">
                     <h1 style="color: #fff; font-size: 24px; margin: 0; font-weight: bold;">${event.title}</h1>
                 </div>
@@ -132,15 +132,24 @@ export const generateTicketPDF = async (order, event) => {
 
     qrContainer.appendChild(qrCanvas);
 
-    // Wait for images and QR code to be fully rendered
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Convert to canvas with explicit element targeting
+    const targetElement = ticketContainer.querySelector('#ticket-capture');
 
-    // Convert to canvas
-    const canvas = await html2canvas(ticketContainer, {
-        scale: 2,
+    // Wait for everything to be truly ready
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    const canvas = await html2canvas(targetElement, {
+        scale: 3, // Higher quality
         backgroundColor: '#000000',
         logging: false,
-        useCORS: true
+        useCORS: true,
+        allowTaint: true,
+        windowWidth: 500, // Matching container width
+        onclone: (clonedDoc) => {
+            const el = clonedDoc.querySelector('#ticket-capture');
+            el.style.position = 'static';
+            el.style.left = '0';
+        }
     });
 
     // Create PDF
