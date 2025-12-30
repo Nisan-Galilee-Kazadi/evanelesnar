@@ -10,6 +10,7 @@ import {
     FaInstagram,
     FaTiktok,
 } from 'react-icons/fa';
+import { API } from '../utils/api';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -20,15 +21,40 @@ const Contact = () => {
         message: ''
     });
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simuler l'envoi du formulaire
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-        }, 3000);
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await fetch(API('/api/contact'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSubmitted(true);
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+                }, 5000);
+            } else {
+                setError(data.message || 'Une erreur est survenue');
+            }
+        } catch (err) {
+            console.error('Error sending contact form:', err);
+            setError('Impossible d\'envoyer le message. Veuillez réessayer.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleChange = (e) => {
@@ -94,80 +120,91 @@ const Contact = () => {
                                 <p className="text-slate-400">Je vous répondrai dans les plus brefs délais.</p>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label className="block text-slate-400 mb-2 text-sm">Nom complet *</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
-                                        placeholder="Votre nom"
-                                    />
-                                </div>
+                            <>
+                                {error && (
+                                    <div className="mb-4 p-4 bg-red-500/10 border border-red-500 rounded-lg text-red-500 text-sm">
+                                        {error}
+                                    </div>
+                                )}
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Nom complet *</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                            placeholder="Votre nom"
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label className="block text-slate-400 mb-2 text-sm">Email *</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
-                                        placeholder="votre@email.com"
-                                    />
-                                </div>
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Email *</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                            placeholder="votre@email.com"
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label className="block text-slate-400 mb-2 text-sm">Téléphone</label>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
-                                        placeholder="+243 000 000 000"
-                                    />
-                                </div>
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Téléphone</label>
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors"
+                                            placeholder="+243 000 000 000"
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label className="block text-slate-400 mb-2 text-sm">Sujet *</label>
-                                    <select
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-3 bg-black border border-red-900/40 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Sujet *</label>
+                                        <select
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-3 bg-black border border-red-900/40 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                                        >
+                                            <option value="">Sélectionnez un sujet</option>
+                                            <option value="booking">Demande de booking</option>
+                                            <option value="collaboration">Collaboration</option>
+                                            <option value="media">Demande média</option>
+                                            <option value="support">Support billetterie</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Message *</label>
+                                        <textarea
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            required
+                                            rows="5"
+                                            className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                                            placeholder="Votre message..."
+                                        ></textarea>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="btn btn-primary w-full text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        <option value="">Sélectionnez un sujet</option>
-                                        <option value="booking">Demande de booking</option>
-                                        <option value="collaboration">Collaboration</option>
-                                        <option value="media">Demande média</option>
-                                        <option value="support">Support billetterie</option>
-                                        <option value="other">Autre</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label className="block text-slate-400 mb-2 text-sm">Message *</label>
-                                    <textarea
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        rows="5"
-                                        className="w-full px-4 py-3 bg-red-900/0 border border-red-900/40 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
-                                        placeholder="Votre message..."
-                                    ></textarea>
-                                </div>
-
-                                <button type="submit" className="btn btn-primary w-full text-lg flex items-center justify-center gap-2">
-                                    Envoyer le message <FaPaperPlane />
-                                </button>
-                            </form>
+                                        {loading ? 'Envoi en cours...' : 'Envoyer le message'} <FaPaperPlane />
+                                    </button>
+                                </form>
+                            </>
                         )}
                     </div>
 
