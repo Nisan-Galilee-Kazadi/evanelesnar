@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaPlus, FaEdit, FaTrash, FaInfoCircle } from "react-icons/fa";
+import { FaPlus, FaEdit, FaTrash, FaInfoCircle, FaSpinner } from "react-icons/fa";
 import Swal from "sweetalert2";
 import AdminLayout from "../../components/AdminLayout";
 import { API } from "../../utils/api";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const EventsManager = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingEvent, setEditingEvent] = useState(null);
 
@@ -77,6 +78,8 @@ const EventsManager = () => {
 
     const method = editingEvent ? "PUT" : "POST";
 
+    setSubmitting(true);
+
     try {
       const response = await fetch(url, {
         method,
@@ -109,6 +112,8 @@ const EventsManager = () => {
         text: "Erreur lors de la sauvegarde.",
         confirmButtonColor: "#dc2626",
       });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -218,13 +223,12 @@ const EventsManager = () => {
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                           <h3 className="text-xl font-bold text-white">{event.title}</h3>
                           <span
-                            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
-                              event.status === "upcoming"
-                                ? "bg-green-500/10 text-green-500"
-                                : event.status === "soldout"
+                            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${event.status === "upcoming"
+                              ? "bg-green-500/10 text-green-500"
+                              : event.status === "soldout"
                                 ? "bg-red-500/10 text-red-500"
                                 : "bg-slate-700 text-slate-300"
-                            }`}
+                              }`}
                           >
                             {event.status.toUpperCase()}
                           </span>
@@ -260,7 +264,7 @@ const EventsManager = () => {
                           onClick={() => handleEdit(event)}
                           className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
                         >
-                          <FaEdit className="text-white" /> 
+                          <FaEdit className="text-white" />
                           <span>Modifier</span>
                         </button>
                         <button
@@ -475,8 +479,10 @@ const EventsManager = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded font-semibold transition-colors"
+                  disabled={submitting}
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
+                  {submitting ? <FaSpinner className="animate-spin" /> : null}
                   {editingEvent ? "Mettre à jour" : "Créer"}
                 </button>
               </div>

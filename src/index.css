@@ -18,6 +18,12 @@
   h6 {
     font-family: 'Playfair Display', Georgia, serif;
   }
+
+  /* Fix for invisible date/time icons in dark mode */
+  input[type="date"],
+  input[type="time"] {
+    color-scheme: dark;
+  }
 }
 
 @layer components {

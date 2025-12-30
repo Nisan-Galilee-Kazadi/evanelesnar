@@ -141,22 +141,18 @@ export const generateTicketPDF = async (order, event) => {
         }
     });
 
-    // Create PDF in Landscape
+    // Custom dimensions (flyer style)
+    const pdfWidth = 200;
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    // Create PDF with custom dimensions matching the ticket
     const pdf = new jsPDF({
         orientation: 'landscape',
         unit: 'mm',
-        format: 'a4'
+        format: [pdfWidth, pdfHeight]
     });
 
-    // Calculate dimensions to fit nicely in A4 Landscape
-    // A4 Landscape: 297mm x 210mm
-    const pdfWidth = 200; // 20cm width seems good for a tract
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-    const x = (297 - pdfWidth) / 2; // Center horizontally
-    const y = (210 - pdfHeight) / 2; // Center vertically
-
-    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', x, y, pdfWidth, pdfHeight);
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
 
     document.body.removeChild(ticketContainer);
     pdf.save(`Billet-${event.title.replace(/\s+/g, '-')}-${order.token}.pdf`);

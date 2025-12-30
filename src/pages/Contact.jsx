@@ -9,6 +9,7 @@ import {
     FaFacebookF,
     FaInstagram,
     FaTiktok,
+    FaSpinner,
 } from 'react-icons/fa';
 import { API } from '../utils/api';
 
@@ -201,7 +202,7 @@ const Contact = () => {
                                         disabled={loading}
                                         className="btn btn-primary w-full text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        {loading ? 'Envoi en cours...' : 'Envoyer le message'} <FaPaperPlane />
+                                        {loading ? <FaSpinner className="animate-spin" /> : <FaPaperPlane />} {loading ? 'Envoi en cours...' : 'Envoyer le message'}
                                     </button>
                                 </form>
                             </>

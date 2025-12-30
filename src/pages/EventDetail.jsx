@@ -18,6 +18,7 @@ import {
   FaCheck,
   FaTicketAlt,
   FaDownload,
+  FaSpinner,
 } from "react-icons/fa";
 
 const EventDetail = () => {
@@ -35,6 +36,7 @@ const EventDetail = () => {
   const [pendingOrder, setPendingOrder] = useState(null);
   const [tokenInput, setTokenInput] = useState("");
   const [validatingToken, setValidatingToken] = useState(false);
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -116,6 +118,7 @@ const EventDetail = () => {
       customerInfo.name &&
       customerInfo.phone
     ) {
+      setProcessing(true);
       try {
         // Prepare order data
         const ticketsList = Object.entries(selectedTickets)
@@ -178,6 +181,8 @@ const EventDetail = () => {
           title: "Erreur serveur",
           text: "Impossible de créer la commande pour le moment.",
         });
+      } finally {
+        setProcessing(false);
       }
     }
   };
@@ -436,7 +441,7 @@ const EventDetail = () => {
                   disabled={validatingToken || !tokenInput.trim()}
                   className="btn btn-primary w-full text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <FaDownload />
+                  {validatingToken ? <FaSpinner className="animate-spin" /> : <FaDownload />}
                   {validatingToken ? "Validation..." : "Télécharger mon Billet"}
                 </button>
               </div>
@@ -679,11 +684,12 @@ const EventDetail = () => {
                   disabled={
                     !selectedPayment ||
                     !customerInfo.name ||
-                    !customerInfo.phone
+                    !customerInfo.phone ||
+                    processing
                   }
                   className="btn btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  <FaCheck /> Valider
+                  {processing ? <FaSpinner className="animate-spin" /> : <FaCheck />} {processing ? "Traitement..." : "Valider"}
                 </button>
               </div>
               <div className="text-center mt-4">
