@@ -399,21 +399,21 @@ const Home = () => {
                   <>
                     <button
                       onClick={prevSlide}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all"
+                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full items-center justify-center text-white shadow-lg transition-all"
                     >
                       <FaChevronLeft />
                     </button>
 
                     <button
                       onClick={nextSlide}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all"
+                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full items-center justify-center text-white shadow-lg transition-all"
                     >
                       <FaChevronRight />
                     </button>
                   </>
                 )}
 
-                <div className={`grid grid-cols-1 ${events.length === 1 ? 'md:grid-cols-1' : events.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-3 px-1`} data-aos="zoom-in">
+                <div className={`hidden md:grid grid-cols-1 ${events.length === 1 ? 'md:grid-cols-1' : events.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-3 px-1`} data-aos="zoom-in">
                   {(events.length <= 3 ? events : visibleEvents).map((event, index) => (
                     <div
                       key={event._id}
